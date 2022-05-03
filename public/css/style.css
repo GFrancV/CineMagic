@@ -1,0 +1,17 @@
+.bg-blue {
+    background-color: #113f67;
+}
+
+.poster img {
+    width: 215px;
+    height: 310px;
+    background-size: cover;
+    border-radius: 20px;
+}
+
+.posters div img {
+    width: 215px;
+    height: 310px;
+    background-size: cover;
+    border-radius: 20px;
+}
