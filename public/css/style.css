@@ -2,6 +2,11 @@
     background-color: #113f67;
 }
 
+.subtitle {
+    font-weight: bold;
+    background-color: #113f67;
+}
+
 .poster img {
     width: 215px;
     height: 310px;
@@ -14,4 +19,19 @@
     height: 310px;
     background-size: cover;
     border-radius: 20px;
+}
+
+a .label-blue {
+    text-decoration: none;
+}
+
+.label-blue {
+    text-align: center;
+    padding: 10px;
+    background-color: #113f67;
+    color: #fefd29;
+    border: 10px 10px 10px 10px;
+    border-radius: 8px;
+    margin-right: 10px;
+    text-decoration: none;
 }

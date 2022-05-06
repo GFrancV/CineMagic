@@ -20,9 +20,19 @@
                 <p>
                     {{ $filme->sumario }}
                 </p>
-                <span style="font-weight:bold">Ano: </span> {{ $filme->ano }}
+                <span class="subtitle">Ano: </span> {{ $filme->ano }}
                 <br>
-                <span style="font-weight:bold">Género: </span> {{ $filme->genero_code }}
+                <span class="subtitle">Género: </span> {{ $filme->genero_code }}
+                <br>
+                <br>
+                <h3>Sessões:</h3>
+                @foreach ($sessions as $session)
+                    <a href="">
+                        <span class="label-blue">
+                            {{ date('l d F', strtotime($session->data)) }}
+                        </span>
+                    </a>
+                @endforeach
                 <br>
                 <br>
                 <h3>Trailer:</h3>
