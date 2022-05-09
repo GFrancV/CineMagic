@@ -27,7 +27,7 @@
                 <br>
                 <h3>Sessões:</h3>
                 @foreach ($sessions as $session)
-                    <a href="">
+                    <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}">
                         <span class="label-blue">
                             {{ date('l d F', strtotime($session->data)) }}
                         </span>

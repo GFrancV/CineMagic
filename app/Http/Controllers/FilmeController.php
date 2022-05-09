@@ -16,7 +16,7 @@ class FilmeController extends Controller
             array_push($displayFilms, Filme::find($session->filme_id));
         }
 
-        return view('filmes.admin', ['filmes' => $displayFilms]);
+        return view('filmes.index', ['filmes' => $displayFilms]);
     }
 
     public function show_info($filmeId){
