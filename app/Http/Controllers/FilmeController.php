@@ -20,15 +20,8 @@ class FilmeController extends Controller
     }
 
     public function show_info($filmeId){
-        $filme = Filme::findOrFail($filmeId);
-        $sessions = Sessoe::all();
-        $sessoesFilme = [];
-
-        foreach ($sessions as $session){
-            if ($session->filme_id == $filmeId) {
-                array_push($sessoesFilme, $session);
-            }
-        }
+        $filme = Filme::find($filmeId);
+        $sessoesFilme = Sessoe::where('filme_id', $filmeId)->paginate(10);
 
         return view('filmes.film', ['filme' => $filme, 'sessions' => $sessoesFilme]);
     }
