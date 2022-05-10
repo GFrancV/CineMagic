@@ -26,13 +26,36 @@
                 <br>
                 <br>
                 <h3>Sessões:</h3>
-                @foreach ($sessions as $session)
-                    <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}">
-                        <span class="label-blue">
-                            {{ date('l d F', strtotime($session->data)) }}
-                        </span>
-                    </a>
-                @endforeach
+                <table class="table table-hover">
+                    <caption>
+                        {{ $sessions->links() }}
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Dia</th>
+                            <th scope="col">Hora</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($sessions as $session)
+                            <tr>
+                                <td>
+                                    {{ date('l d F', strtotime($session->data)) }}
+                                </td>
+                                <td>
+                                    {{ $session->horario_inicio }}
+                                </td>
+                                <td>
+                                    <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}"
+                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                        <i class="fas fa-money-bill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 <br>
                 <br>
                 <h3>Trailer:</h3>
