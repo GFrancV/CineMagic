@@ -23,6 +23,8 @@ Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index']);
 
+//Test
+Route::get('/place/{idSala}', [PurchaseController::class, 'draw']);
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);

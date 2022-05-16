@@ -26,7 +26,8 @@
                 <br>
                 <br>
                 <h3>Sessões:</h3>
-                <table class="table table-hover">
+                <table class="table
+                table-hover">
                     <caption>
                         {{ $sessions->links() }}
                     </caption>

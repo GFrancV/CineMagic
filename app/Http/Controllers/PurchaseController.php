@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Filme;
+use App\Models\Lugare;
 use App\Models\Sessoe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
@@ -19,5 +20,15 @@ class PurchaseController extends Controller
         }
 
         return view('purchase.index',  ['filme' => $filme, 'sessao' => $session]);
+    }
+
+    //test function
+    public function draw($idSala){
+        $places = Lugare::all()->where('sala_id', $idSala);
+
+        $rows = Lugare::all()->where('sala_id', $idSala)->max('fila');
+        $cols = Lugare::all()->where('sala_id', $idSala)->max('posicao');
+
+        return view('partials.salas', ['places' => $places, 'rows' => $rows, 'cols' => $cols]);
     }
 }
