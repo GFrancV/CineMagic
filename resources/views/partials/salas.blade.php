@@ -3,32 +3,51 @@
         <tr>
             <th></th>
             @php
-                $aux = '';
                 $count = 0;
 
-                foreach ($places as $place) {
-                    if (!strcmp($aux, $place->fila) == 0) {
-                        echo '<th>' . $place->fila . '</th>';
-                        $count++;
-                    }
-
-                    $aux = $place->fila;
+                for ($i = 0; $i < $cols; $i++) {
+                    $aux = $i + 1;
+                    echo '<th>';
+                    echo $aux;
+                    echo '</th>';
+                    $count++;
                 }
             @endphp
+
         </tr>
     </thead>
     <tbody>
-        @for ($i = 0; $i < $cols; $i++)
-            <tr>
-                <th>
-                    {{ $i + 1 }}
-                </th>
-                @for ($j = 0; $j < $count; $j++)
-                    <td>
-                        Puesto
-                    </td>
-                @endfor
-            </tr>
-        @endfor
+        @php
+            $aux = '';
+
+            foreach ($places as $place) {
+                echo '<tr>';
+                if (!strcmp($aux, $place->fila) == 0) {
+                    echo '<th>' . $place->fila . '</th>';
+                    for ($j = 0; $j < $count; $j++) {
+                        echo '<td>';
+                        echo "<form method='GET' action='" .
+                '/purchase/' .
+                $filme->id .
+                '/' .
+                $sessao->id .
+                "'>
+                            <input type='hidden' value='" .
+                $nPlaces .
+                "' name='nPlaces'>
+                            <input type='hidden' value='A2' name='sit'>
+                            ";
+                        echo '<button class="btn-place" type="submit">
+                                <i class="fas fa-couch cinema-seats"></i>
+                            </button> </form>';
+                        echo '</td>';
+                    }
+                }
+                $aux = $place->fila;
+                echo '</tr>';
+            }
+        @endphp
+
+
     </tbody>
 </table>

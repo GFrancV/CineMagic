@@ -21,7 +21,8 @@ Route::get('/filmes', [FilmeController::class, 'index']);
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
 //Purchase
-Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index']);
+Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
+Route::get('/purchase/places', [PurchaseController::class, 'selec_places'])->name('purchase.places');
 
 //Test
 Route::get('/place/{idSala}', [PurchaseController::class, 'draw']);

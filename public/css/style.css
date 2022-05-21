@@ -35,3 +35,16 @@ a .label-blue {
     margin-right: 10px;
     text-decoration: none;
 }
+
+.cinema-seats {
+    font-size: 40px;
+}
+
+.btn-place {
+    padding: 4px;
+    margin: 2px;
+}
+
+.btn-place:hover {
+    color: #585858;
+}
