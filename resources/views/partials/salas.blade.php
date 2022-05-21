@@ -4,6 +4,8 @@
             <th></th>
             @php
                 $count = 0;
+                $auxPaint = $nPlaces;
+                $auxActive = false;
 
                 for ($i = 0; $i < $cols; $i++) {
                     $aux = $i + 1;
@@ -32,14 +34,34 @@
                 '/' .
                 $sessao->id .
                 "'>
-                            <input type='hidden' value='" .
+                                        <input type='hidden' value='" .
                 $nPlaces .
                 "' name='nPlaces'>
-                            <input type='hidden' value='A2' name='sit'>
-                            ";
-                        echo '<button class="btn-place" type="submit">
-                                <i class="fas fa-couch cinema-seats"></i>
-                            </button> </form>';
+                                        <input type='hidden' value='" .
+                $place->fila .
+                $j +
+                1 .
+                "' name='sit'>";
+
+                        //Paint the selected place
+                        if ($place->fila . $j + 1 == app('request')->input('sit')) {
+                            echo '<button class="btn-place-active" type="submit">
+                                    <i class="fas fa-couch cinema-seats"></i>
+                                </button> </form>';
+                            $auxActive = true;
+                            $auxPaint = $auxPaint - 1;
+                        } else {
+                            if ($auxActive && $auxPaint > 0) {
+                                echo '<button class="btn-place-active" type="submit">
+                                            <i class="fas fa-couch cinema-seats"></i>
+                                        </button> </form>';
+                                $auxPaint = $auxPaint - 1;
+                            } else {
+                                echo '<button class="btn-place" type="submit">
+                                        <i class="fas fa-couch cinema-seats"></i>
+                                    </button> </form>';
+                            }
+                        }
                         echo '</td>';
                     }
                 }

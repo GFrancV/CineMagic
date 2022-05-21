@@ -41,10 +41,17 @@ a .label-blue {
 }
 
 .btn-place {
-    padding: 4px;
-    margin: 2px;
+    color: #113f67;
+    border: none;
+    background-color: white;
+}
+
+.btn-place-active {
+    color: #fdd200;
+    border: none;
+    background-color: white;
 }
 
 .btn-place:hover {
-    color: #585858;
+    color: #fdd200;
 }
