@@ -29,33 +29,55 @@
                         </p>
                     </div>
                     <div class="col-sm-6">
-                        <h4>Numero de bilhetes:</h4>
-                        <form method="GET" action="{{ '/purchase/' . $filme->id . '/' . $sessao->id }}"
-                            class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <input class="form-control" type="number" name="nPlaces" value="{{ $nPlaces }}"
-                                        min="1" max="5">
+                        @if (app('request')->input('type') != 'payment')
+                            <h4>Numero de bilhetes:</h4>
+                            <form method="GET" action="{{ '/purchase/' . $filme->id . '/' . $sessao->id }}"
+                                class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" type="number" name="nPlaces"
+                                            value="{{ $nPlaces }}" min="1" max="5">
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-primary" type="submit">Comprar</button>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <button class="btn btn-primary" type="submit">Comprar</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        @else
+                            <h4>Lugares:</h4>
+                            <p>
+                                @if (app('request')->input('nPlaces') > 1)
+                                    @for ($i = app('request')->input('newCol'); $i < app('request')->input('nPlaces') + app('request')->input('newCol'); $i++)
+                                        {{ app('request')->input('newRow') . $i }},
+                                    @endfor
+                                @else
+                                    {{ app('request')->input('newRow') . app('request')->input('newCol') }}
+                                @endif
+                            </p>
+                        @endif
+
+
                         <br>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-        @if ($nPlaces != '')
+        <!-- If is necessary select places -->
+        @if ($nPlaces != '' && app('request')->input('type') != 'payment')
             <h4>Escolha o seu lugar: </h4>
             <br>
             <div>
-                @include('partials.salas', ['places' => $places, 'cols' => $cols])
-                <br>
-                <button class="btn btn-primary" type="submit">Continuar</button>
+                <form method="GET" action="{{ '/purchase/' . $filme->id . '/' . $sessao->id }}">
+                    @include('partials.salas', ['places' => $places, 'cols' => $cols])
+                    <br>
+                    <input type="hidden" name="newCol" value="{{ app('request')->input('col') }}">
+                    <input type="hidden" name="newRow" value="{{ app('request')->input('row') }}">
+                    <input type="hidden" name="type" value="payment">
+                    <button class="btn btn-primary" type="submit">Continuar</button>
+                </form>
             </div>
         @endif
+
         <br>
     @endsection

@@ -28,23 +28,13 @@
                     echo '<th>' . $place->fila . '</th>';
                     for ($j = 0; $j < $count; $j++) {
                         echo '<td>';
-                        echo "<form method='GET' action='" .
-                '/purchase/' .
-                $filme->id .
-                '/' .
-                $sessao->id .
-                "'>
-                                        <input type='hidden' value='" .
-                $nPlaces .
-                "' name='nPlaces'>
-                                        <input type='hidden' value='" .
-                $place->fila .
-                $j +
-                1 .
-                "' name='sit'>";
+                        echo "<form method='GET' action='" . '/purchase/' . $filme->id . '/' . $sessao->id . "'>";
+                        echo "<input type='hidden' name='nPlaces' value='" . $nPlaces . "' >";
+                        echo "<input type='hidden' name='row' value='" . $place->fila . "' >";
+                        echo "<input type='hidden' name='col' value='" . $j + 1 . "' >";
 
                         //Paint the selected place
-                        if ($place->fila . $j + 1 == app('request')->input('sit')) {
+                        if ($place->fila . $j + 1 == app('request')->input('row') . app('request')->input('col')) {
                             echo '<button class="btn-place-active" type="submit">
                                     <i class="fas fa-couch cinema-seats"></i>
                                 </button> </form>';

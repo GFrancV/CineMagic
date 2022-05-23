@@ -43,11 +43,8 @@ class PurchaseController extends Controller
     }
 
     //test function
-    public function draw($idSala){
-        $places = Lugare::all()->where('sala_id', $idSala);
+    public function draw(){
 
-        $cols = Lugare::all()->where('sala_id', $idSala)->max('posicao');
-
-        return view('partials.salas', ['places' => $places, 'cols' => $cols]);
+        return view('partials.payment');
     }
 }

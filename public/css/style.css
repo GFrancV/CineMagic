@@ -55,3 +55,8 @@ a .label-blue {
 .btn-place:hover {
     color: #fdd200;
 }
+
+.btn-payment-type {
+    border: 1px solid #113f67;
+    background-color: white;
+}

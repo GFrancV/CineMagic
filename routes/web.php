@@ -25,7 +25,7 @@ Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index
 Route::get('/purchase/places', [PurchaseController::class, 'selec_places'])->name('purchase.places');
 
 //Test
-Route::get('/place/{idSala}', [PurchaseController::class, 'draw']);
+Route::get('/test/', [PurchaseController::class, 'draw']);
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);
