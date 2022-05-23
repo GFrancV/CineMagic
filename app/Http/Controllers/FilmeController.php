@@ -22,9 +22,6 @@ class FilmeController extends Controller
     public function show_info($filmeId){
         $filme = Filme::find($filmeId);
         $sessoesFilme = Sessoe::where('filme_id', $filmeId)->paginate(10);
-        $actualData = date('m-d-Y', time());
-        $actualTime = date('h:i:s', time());
-
 
         return view('filmes.film', ['filme' => $filme, 'sessions' => $sessoesFilme]);
     }
