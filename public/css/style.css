@@ -56,12 +56,19 @@ a .label-blue {
     color: #fdd200;
 }
 
-.btn-payment-type {
-    border: 1px solid #113f67;
-    background-color: white;
-    padding: 5px;
+/* Radious */
+.input-hidden {
+    position: absolute;
+    left: -9999px;
 }
 
-.btn-payment-type img {
-    height: 150px;
+input[type="radio"]:checked + label > img {
+    border: 2px solid #56a7ee;
+}
+
+input[type="radio"] + label > img {
+    border: 2px solid #e6e6e6;
+    height: 100px;
+    border-radius: 25px;
+    padding: 5px;
 }

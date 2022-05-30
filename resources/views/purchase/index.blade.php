@@ -55,10 +55,15 @@
                                 @endif
                             </p>
                         @endif
-
-
                         <br>
                     </div>
+                </div>
+                <div class="row">
+                    <!-- Payment info -->
+                    @if (app('request')->input('type') == 'payment')
+                        <h4>Payment:</h4>
+                        @include('partials.payment')
+                    @endif
                 </div>
             </div>
         </div>
@@ -78,6 +83,5 @@
                 </form>
             </div>
         @endif
-
         <br>
     @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\PurchaseController;
 
 /*
@@ -22,7 +23,9 @@ Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
-Route::get('/purchase/places', [PurchaseController::class, 'selec_places'])->name('purchase.places');
+
+//Recibo
+Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store');
 
 //Test
 Route::get('/test/', [PurchaseController::class, 'draw']);

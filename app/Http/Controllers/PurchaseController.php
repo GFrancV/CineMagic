@@ -36,12 +36,6 @@ class PurchaseController extends Controller
             'places' => $places, 'cols' => $cols, 'nPlaces' => $nPlaces]);
     }
 
-    public function selec_places(Request $request){
-        $places = $request->places ?? '';
-
-        return view('purchase.places', ['places' => $places]);
-    }
-
     //test function
     public function draw(){
 
