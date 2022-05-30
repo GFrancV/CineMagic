@@ -32,24 +32,24 @@
             <br>
             Escolha a sua forma de pagamento:
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 d-flex justify-content-center">
                     <form action="">
                         <button class="btn-payment-type" type="submit">
-                            <img src="/images/icons/payments/visa_payment.svg" alt="visa" height="180vw">
+                            <img src="/images/icons/payments/visa_payment.svg" alt="visa">
                         </button>
                     </form>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 d-flex justify-content-center">
                     <form action="">
                         <button class="btn-payment-type" type="submit">
-                            <img src="/images/icons/payments/mbway_payment.png" alt="mbway" height="180vw">
+                            <img src="/images/icons/payments/mbway_payment.png" alt="mbway">
                         </button>
                     </form>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4 d-flex justify-content-center">
                     <form action="">
                         <button class="btn-payment-type" type="submit">
-                            <img src="/images/icons/payments/paypal_payment.png" alt="paypal" height="180vw">
+                            <img src="/images/icons/payments/paypal_payment.png" alt="paypal">
                         </button>
                     </form>
                 </div>

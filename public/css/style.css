@@ -59,4 +59,9 @@ a .label-blue {
 .btn-payment-type {
     border: 1px solid #113f67;
     background-color: white;
+    padding: 5px;
+}
+
+.btn-payment-type img {
+    height: 150px;
 }
