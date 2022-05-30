@@ -9,13 +9,10 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function index(){
-        $sessions = Sessoe::all();
-        $displayFilms = [];
+        $sessions = Sessoe::where('data', '2020-01-02');
 
-        foreach($sessions as $session){
-            array_push($displayFilms, Filme::find($session->filme_id));
-        }
+        $filmes = Filme::whereIn('id', $sessions->pluck('filme_id'))->get();
 
-        return view('pages.index', ['filmes' => $displayFilms]);
+        return view('pages.index', ['filmes' => $filmes]);
     }
 }

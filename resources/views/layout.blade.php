@@ -33,8 +33,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Filmes</a>
+                    <li class="nav-item {{ Route::currentRouteName() == 'filmes' ? 'active' : '' }}">
+                        <a class="nav-link" aria-current="page" href="/filmes">Filmes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Serviços</a>

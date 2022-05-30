@@ -17,7 +17,7 @@ use App\Http\Controllers\PurchaseController;
 */
 
 Route::get('/', [PageController::class, 'index']);
-Route::get('/filmes', [FilmeController::class, 'index']);
+Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
 //Purchase

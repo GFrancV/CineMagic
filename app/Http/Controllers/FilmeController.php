@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 class FilmeController extends Controller
 {
     public function index(){
-        //$sessions = Sessoe::where('data', now());
+        //In the final version use this code!!
+        //$sessions = Sessoe::where('data', 'data', date('Y-m-d'));
+
+        //Only for test
         $sessions = Sessoe::where('data', '2020-01-02');
 
         $filmes = Filme::whereIn('id', $sessions->pluck('filme_id'))->get();
@@ -18,7 +21,11 @@ class FilmeController extends Controller
 
     public function show_info($filmeId){
         $filme = Filme::find($filmeId);
-        $sessoesFilme = Sessoe::where('filme_id', $filmeId)->paginate(10);
+        //In the final version use this code!!
+        //$sessoesFilme = Sessoe::where('filme_id', $filmeId)->where('data', date('Y-m-d'))->paginate(10);
+
+        //Only for test
+        $sessoesFilme = Sessoe::where('filme_id', $filmeId)->where('data', '2020-01-02')->paginate(10);
 
         return view('filmes.film', ['filme' => $filme, 'sessions' => $sessoesFilme]);
     }
