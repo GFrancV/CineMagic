@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sala;
 use App\Models\Filme;
+use App\Models\Lugare;
 use App\Models\Sessoe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
