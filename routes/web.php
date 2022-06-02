@@ -28,10 +28,8 @@ Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index
 //Route::view('/admin', 'layout_admin');
 
 
-Route::get('/admin', function () {
-    return view('layout_admin');
-});
-
+//Route::get('/admin', function () {return view('layout_admin');})->name('layout_admin');
+Route::view('/admin', 'layout_admin')->name('admin');
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);

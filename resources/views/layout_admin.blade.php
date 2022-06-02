@@ -29,7 +29,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin')}}">
                 <div class="sidebar-brand-icon">
                     <img src="{{asset('img/logo.png')}}" alt="Logo" class="logo-img">
                 </div>
@@ -40,8 +40,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{Route::currentRouteName()=='admin.dashboard'? 'active': ''}}">
-                <a class="nav-link" href="{{route('admin.dashboard')}}">
+            <li class="nav-item {{Route::currentRouteName()=='admin'? 'active': ''}}">
+                <a class="nav-link" href="{{route('admin')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -51,7 +51,7 @@
             <hr class="sidebar-divider">
 
            
-            <li class="nav-item {{Route::currentRouteName()=='admin.filmes'? 'active': ''}}">
+            <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Filmes</span>
