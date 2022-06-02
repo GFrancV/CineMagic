@@ -16,12 +16,21 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/filmes', [FilmeController::class, 'index']);
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
+
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index']);
+
+//Route::view('/admin', 'layout_admin');
+
+
+Route::get('/admin', function () {
+    return view('layout_admin');
+});
 
 
 //Administrator routes
@@ -32,6 +41,4 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
