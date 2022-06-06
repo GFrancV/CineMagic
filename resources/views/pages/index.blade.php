@@ -3,7 +3,7 @@
 @section('content')
     <br>
     <div class="container">
-        <h1>Filmes em Carta</h1>
+        <h1>Filmes em Cartaz</h1>
         <br>
         @include('filmes.films', ['filmes' => $filmes])
     </div>

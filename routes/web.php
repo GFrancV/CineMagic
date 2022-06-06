@@ -17,9 +17,11 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
+
 
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
@@ -29,6 +31,11 @@ Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store'
 
 //Test
 Route::get('/test/', [PurchaseController::class, 'draw']);
+//Route::view('/admin', 'layout_admin');
+
+
+//Route::get('/admin', function () {return view('layout_admin');})->name('layout_admin');
+Route::view('/admin', 'layout_admin')->name('admin');
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);
@@ -37,3 +44,5 @@ Route::get('admin/filmes', [FilmeController::class, 'admin_index']);
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

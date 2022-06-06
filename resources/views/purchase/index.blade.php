@@ -17,7 +17,7 @@
                 <div class="row ">
                     <div class="col-sm-6">
                         <br>
-                        <h4> Sessaõ: </h4>
+                        <h4> Sessão: </h4>
                         <p>
                             {{ date('l d F', strtotime($sessao->data)) }} as
                             {{ date('H:i', strtotime($sessao->horario_inicio)) }} horas
