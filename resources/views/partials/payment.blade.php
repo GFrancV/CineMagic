@@ -1,6 +1,8 @@
     <div class="container" style="font-size: 20px">
 
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('recibo.store') }}" class="form-group" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="cliente_id" value="22">
             <div class="row">
                 <div class="col-sm-8">
                 </div>
@@ -86,15 +88,9 @@
                             <span style="font-weight: bold;">Total sem IVA:</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="validationCustomUsername"
-                                placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                            <div class="invalid-feedback">
-                                Please choose a username.
-                            </div>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend">€</span>
-                            </div>
-                            {{ round($nPlaces * 5.5, 4) }}€
+                            <input type="number" name="preco_total_sem_iva" class="input-hide"
+                                value="{{ round($nPlaces * 5.5, 4) }}" readonly>
+                            <span>€</span>
                         </div>
                     </div>
                     <div class="row">
@@ -102,7 +98,8 @@
                             <span style="font-weight: bold;">IVA 23%:</span>
                         </div>
                         <div class="col-sm-4">
-                            {{ round($nPlaces * 5.5 * 0.23, 2) }}€
+                            <input type="number" name="iva" class="input-hide"
+                                value="{{ round($nPlaces * 5.5 * 0.23, 2) }}" readonly>
                         </div>
                     </div>
                     <hr class="sidebar-divider my-0">
@@ -111,7 +108,9 @@
                             <span style="font-weight: bold;">Total:</span>
                         </div>
                         <div class="col-sm-4">
-                            {{ round($nPlaces * 5.5 * 1.23, 2) }}€
+                            <input type="number" name class="input-hide"
+                                value="{{ round($nPlaces * 5.5 * 1.23, 2) }}" readonly>
+                            €
                         </div>
                     </div>
                 </div>
@@ -119,7 +118,7 @@
             <br>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
                 <br>
-                <button class="btn btn-primary btn-lg" type="submit">Continuar</button>
+                <button name="ok" class="btn btn-primary btn-lg" type="submit">Continuar</button>
             </div>
         </form>
     </div>

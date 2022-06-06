@@ -24,11 +24,15 @@ class ReciboPost extends FormRequest
     public function rules()
     {
         return [
-            'data' =>               'required|date_format:Y-m-d',
-            'nome' =>               'required',
-            'nif' =>                'digits:9',
-            'tipo_pagamento' =>     'required',
-            'ref_pagamento' =>      'required'
+            'cliente_id' =>             'required',
+            'data' =>                   'required|date_format:Y-m-d',
+            'preco_total_sem_iva' =>    'required',
+            'iva' =>                    'required',
+            'preco_total_com_iva' =>    'required',
+            'nif' =>                    'digits:9',
+            'nome_cliente' =>           'required',
+            'tipo_pagamento' =>         'required',
+            'ref_pagamento' =>          'required'
         ];
     }
 }

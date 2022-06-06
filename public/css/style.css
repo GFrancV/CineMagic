@@ -72,3 +72,8 @@ input[type="radio"] + label > img {
     border-radius: 25px;
     padding: 5px;
 }
+
+.input-hide {
+    border: none;
+    background-color: none;
+}
