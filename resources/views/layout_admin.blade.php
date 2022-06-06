@@ -29,19 +29,16 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin')}}">
-                <div class="sidebar-brand-icon">
-                    <img src="{{asset('img/logo.png')}}" alt="Logo" class="logo-img">
-                </div>
-                <div class="sidebar-brand-text mx-3">DEI</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin') }}">
+                <div class="sidebar-brand-text mx-3">Cinemagic Admin </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{Route::currentRouteName()=='admin'? 'active': ''}}">
-                <a class="nav-link" href="{{route('admin')}}">
+            <li class="nav-item {{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -50,7 +47,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-           
+
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
@@ -64,7 +61,7 @@
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/')}}">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Parte Publica</span>
                 </a>
@@ -108,14 +105,13 @@
                                     <span
                                         class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                     <img class="img-profile rounded-circle"
-                                        src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
+                                        src="{{ Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('images/default_img.png') }}">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
                                     @if (auth()->user()->tipo != 'O')
-                                        <a class="dropdown-item"
-                                            href="#">
+                                        <a class="dropdown-item" href="#">
                                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                             Perfil
                                         </a>

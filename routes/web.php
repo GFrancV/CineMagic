@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\PurchaseController;
@@ -17,14 +18,19 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
-
+//Films
 Route::get('/', [PageController::class, 'index']);
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
+//User
+Route::get('/users', [UserController::class, 'index'])->name('user.index');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
+
+
 
 //Recibo
 Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store');

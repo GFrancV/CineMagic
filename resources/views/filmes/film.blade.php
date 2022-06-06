@@ -58,10 +58,12 @@
                 </table>
                 <br>
                 <br>
-                <h3>Trailer:</h3>
-                <div>
-                    <x-embed url="{{ $filme->trailer_url }}" height="360" />
-                </div>
+                @if (!is_null($filme->trailer_url))
+                    <h3>Trailer:</h3>
+                    <div>
+                        <x-embed url="{{ $filme->trailer_url }}" height="360" />
+                    </div>
+                @endif
             </div>
         </div>
     </div>
