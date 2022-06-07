@@ -76,4 +76,15 @@ input[type="radio"] + label > img {
 .input-hide {
     border: none;
     background-color: none;
+    color: #898d9e;
+    width: 82%;
+}
+
+.purchase-success {
+    background-color: #fafafa;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    /* IMPORTANTE */
+    text-align: center;
 }

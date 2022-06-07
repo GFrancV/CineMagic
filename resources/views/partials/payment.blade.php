@@ -8,9 +8,7 @@
             <!-- To create bilhete -->
             <input type="hidden" name="sessao_id" value="{{ $sessao->id }} ">
             <input type="hidden" name="lugar_id" value="{{ app('request')->input('newLugarId') }} ">
-
-
-
+            <input type="hidden" name="nPlaces" value="{{ $nPlaces }} ">
 
             @error('nif')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -26,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-8">
-                    <label for="nome" class="form-label">Nome cliente:</label>
+                    <label for="nome" class="form-label">Nome cliente: (*)</label>
                     <input type="text" class="form-control" id="nome" name="nome_cliente"
                         value="{{ old('nome_cliente') }}">
                 </div>
@@ -38,7 +36,7 @@
             </div>
             <br>
             <h4>
-                Forma de pagamento:
+                Forma de pagamento: (*)
             </h4>
             <div class="row">
                 <div class="col-sm-4 d-flex justify-content-center">
@@ -72,7 +70,7 @@
             <h4>
                 Informação personal
             </h4>
-            <label for="ref_pagamento" class="form-label">Referência de pagamento:</label>
+            <label for="ref_pagamento" class="form-label">Referência de pagamento: (*)</label>
             <input type="text" class="form-control" id="ref_pagamento" name="ref_pagamento"
                 value="{{ old('ref_pagamento') }}">
             <!--
@@ -103,17 +101,18 @@
                         </div>
                         <div class="col-sm-4">
                             <input type="number" name="preco_total_sem_iva" class="input-hide"
-                                value="{{ round($nPlaces * 5.5, 4) }}" readonly>
+                                value="{{ round($nPlaces * $price->preco_bilhete_sem_iva, 2) }}" readonly>
                             <span>€</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
-                            <span style="font-weight: bold;">IVA 23%:</span>
+                            <span style="font-weight: bold;">IVA {{ $price->percentagem_iva }}%:</span>
                         </div>
                         <div class="col-sm-4">
                             <input type="number" name="iva" class="input-hide"
-                                value="{{ round($nPlaces * 5.5 * 0.23, 2) }}" readonly>
+                                value="{{ round($nPlaces * $price->preco_bilhete_sem_iva * $price->percentagem_iva * 0.01, 2) }}"
+                                readonly>
                         </div>
                     </div>
                     <hr class="sidebar-divider my-0">
@@ -123,7 +122,8 @@
                         </div>
                         <div class="col-sm-4">
                             <input type="number" name="preco_total_com_iva" class="input-hide"
-                                value="{{ round($nPlaces * 5.5 * 1.23, 2) }}" readonly>
+                                value="{{ round($nPlaces * $price->preco_bilhete_sem_iva * (1 + $price->percentagem_iva * 0.01), 2) }}"
+                                readonly>
                             €
                         </div>
                     </div>

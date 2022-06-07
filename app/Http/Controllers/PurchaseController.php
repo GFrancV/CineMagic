@@ -6,6 +6,7 @@ use App\Models\Sala;
 use App\Models\Filme;
 use App\Models\Lugare;
 use App\Models\Sessoe;
+use App\Models\Configuracao;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
 
@@ -15,6 +16,7 @@ class PurchaseController extends Controller
         $filme = Filme::findOrFail($filmeId);
         $session = Sessoe::findOrFail($sessionId);
         $sala = Sala::findOrFail($session->sala_id);
+        $price = Configuracao::find('1');
 
         $nPlaces = $request->nPlaces ?? '';
 
@@ -33,12 +35,13 @@ class PurchaseController extends Controller
         }
 
         return view('purchase.index',  ['filme' => $filme, 'sessao' => $session, 'sala' => $sala,
-            'places' => $places, 'cols' => $cols, 'nPlaces' => $nPlaces]);
+            'places' => $places, 'cols' => $cols, 'nPlaces' => $nPlaces, 'price' => $price]);
     }
 
     //test function
     public function draw(){
+        $filme = Filme::find(1);
 
-        return view('partials.payment');
+        return view('purchase.finish',['filme'=>$filme]);
     }
 }

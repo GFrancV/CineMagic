@@ -33,6 +33,9 @@ Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index
 
 
 //Recibo
+Route::get('/recibo/{reciboId}', [ReciboController::class, 'index'])->name('recibo.index');
+Route::get('/recibo/{reciboId}/pdf', [ReciboController::class, 'pdf'])->name('recibo.pdf');
+Route::get('/recibo/{reciboId}/download', [ReciboController::class, 'download'])->name('recibo.pdf');
 Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store');
 
 //Test
