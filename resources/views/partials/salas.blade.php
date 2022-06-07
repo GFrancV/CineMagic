@@ -28,10 +28,17 @@
                     echo '<th>' . $place->fila . '</th>';
                     for ($j = 0; $j < $count; $j++) {
                         echo '<td>';
-                        echo "<form method='GET' action='" . '/purchase/' . $filme->id . '/' . $sessao->id . "'>";
+                        echo "<form method='GET' action='/purchase/" . $filme->id . '/' . $sessao->id . "'>";
                         echo "<input type='hidden' name='nPlaces' value='" . $nPlaces . "' >";
                         echo "<input type='hidden' name='row' value='" . $place->fila . "' >";
                         echo "<input type='hidden' name='col' value='" . $j + 1 . "' >";
+
+                        foreach ($places as $placeAux) {
+                            if (strcmp($placeAux->fila, $place->fila) == 0 && strcmp($placeAux->posicao, $j + 1) == 0) {
+                                echo "<input type='hidden' name='lugar_id' value='" . $placeAux->id . "' >";
+                            } else {
+                            }
+                        }
 
                         //Paint the selected place
                         if ($place->fila . $j + 1 == app('request')->input('row') . app('request')->input('col')) {

@@ -13,7 +13,7 @@ class ReciboPost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,10 +29,12 @@ class ReciboPost extends FormRequest
             'preco_total_sem_iva' =>    'required',
             'iva' =>                    'required',
             'preco_total_com_iva' =>    'required',
-            'nif' =>                    'digits:9',
-            'nome_cliente' =>           'required',
-            'tipo_pagamento' =>         'required',
-            'ref_pagamento' =>          'required'
+            'nif' =>                    'nullable|digits:9',
+            'nome_cliente' =>           'required|string',
+            'tipo_pagamento' =>         'required|in:VISA,MBWAY,PAYPAL',
+            'ref_pagamento' =>          'required',
+            'lugar_id' =>               'required',
+            'sessao_id' =>              'required'
         ];
     }
 }

@@ -78,6 +78,7 @@
                     <br>
                     <input type="hidden" name="newCol" value="{{ app('request')->input('col') }}">
                     <input type="hidden" name="newRow" value="{{ app('request')->input('row') }}">
+                    <input type="hidden" name="newLugarId" value="{{ app('request')->input('lugar_id') }}">
                     <input type="hidden" name="type" value="payment">
                     <button class="btn btn-primary" type="submit">Continuar</button>
                 </form>

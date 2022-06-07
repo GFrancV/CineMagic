@@ -2,7 +2,19 @@
 
         <form method="POST" action="{{ route('recibo.store') }}" class="form-group" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="cliente_id" value="22">
+            <!-- Hidden forms -->
+            <!-- Client ID hidden -->
+            <input type="hidden" id="cliente_id" name="cliente_id" value="{{ Auth::user()->id }}">
+            <!-- To create bilhete -->
+            <input type="hidden" name="sessao_id" value="{{ $sessao->id }} ">
+            <input type="hidden" name="lugar_id" value="{{ app('request')->input('newLugarId') }} ">
+
+
+
+
+            @error('nif')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="row">
                 <div class="col-sm-8">
                 </div>
@@ -15,11 +27,13 @@
             <div class="row">
                 <div class="col-sm-8">
                     <label for="nome" class="form-label">Nome cliente:</label>
-                    <input type="text" class="form-control" id="nome" name="nome_cliente" required>
+                    <input type="text" class="form-control" id="nome" name="nome_cliente"
+                        value="{{ old('nome_cliente') }}">
                 </div>
                 <div class="col-sm-4">
                     <label for="nif" class="form-label">NIF:</label>
-                    <input type="number" class="form-control" id="nif" name="nif">
+                    <input type="number" class="form-control @error('nif') is-invalid @enderror" id="nif" name="nif"
+                        value="{{ old('nif') }}">
                 </div>
             </div>
             <br>
@@ -29,8 +43,7 @@
             <div class="row">
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="form-check">
-                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="visaPayment" value="VISA"
-                            required>
+                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="visaPayment" value="VISA">
                         <label class="form-check-label" for="visaPayment">
                             <img src="/images/icons/payments/visa_payment.png" alt="visa" class="">
                         </label>
@@ -38,8 +51,8 @@
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="form-check">
-                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="mbwatPayment" value="MBWAY"
-                            required>
+                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="mbwatPayment"
+                            value="MBWAY">
                         <label class="form-check-label" for="mbwatPayment">
                             <img src="/images/icons/payments/mbway_payment.png" alt="mbway" class="">
                         </label>
@@ -48,7 +61,7 @@
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="form-check">
                         <input class="input-hidden" type="radio" name="tipo_pagamento" id="paypalPayment"
-                            value="PAYPAL" required>
+                            value="PAYPAL">
                         <label class="form-check-label" for="paypalPayment">
                             <img src="/images/icons/payments/paypal_payment.png" alt="paypal" class="">
                         </label>
@@ -60,7 +73,8 @@
                 Informação personal
             </h4>
             <label for="ref_pagamento" class="form-label">Referência de pagamento:</label>
-            <input type="text" class="form-control" id="ref_pagamento" name="ref_pagamento" required>
+            <input type="text" class="form-control" id="ref_pagamento" name="ref_pagamento"
+                value="{{ old('ref_pagamento') }}">
             <!--
             <div class="row">
                 <div class="col-sm-8">
@@ -108,7 +122,7 @@
                             <span style="font-weight: bold;">Total:</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="number" name class="input-hide"
+                            <input type="number" name="preco_total_com_iva" class="input-hide"
                                 value="{{ round($nPlaces * 5.5 * 1.23, 2) }}" readonly>
                             €
                         </div>

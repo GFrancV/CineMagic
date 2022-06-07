@@ -34,6 +34,12 @@
                         </a>
                     </ul>
 
+                    @php
+                        if (strcmp(Auth::user()->tipo, 'A') == 0) {
+                            echo "<hr class='sidebar-divider d-none d-md-block'> <ul class='nav-item'> <a class='nav-link' href='{{ " . '/admin' . " }}'' ><i class='fas fa-tachometer-alt fa-sm fa-fw'></i>Admin dashboard</a></ul>";
+                        }
+                    @endphp
+
                     <!-- Divider -->
                     <hr class="sidebar-divider d-none d-md-block">
 
@@ -68,8 +74,9 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">Logout</a>
+                        <a class="btn btn-primary" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                                                                document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
