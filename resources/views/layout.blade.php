@@ -19,6 +19,32 @@
 </head>
 
 <body>
+    <!-- TESTE 
+    @auth
+        <div class="avatar-area">
+            <span class="name-user">{{Auth::user()->name}}</span>
+                <img src="{{Auth::user()->url_foto ? asset('storage/fotos/' . Auth::user()->url_foto) : asset('img/default_img.png') }}">
+        </div>
+    @else
+        <div class="avatar-area">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+        </div>
+    @endauth
+
+    @auth
+        <li>
+            <i class="fab fa-wpforms"></i>
+                <a href="{{route('admin.dashboard')}}">Administração</a>
+        </li>
+        <li>
+            <i class="fab fa-wpforms"></i>
+                <a href="{{route('logout')}}" onclick="event.preventDefault();
+                document.getElementById('logoutform').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
+    @endauth -->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue sticky-top">
         <div class="container-fluid">

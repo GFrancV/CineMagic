@@ -29,11 +29,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}">
                 <div class="sidebar-brand-icon">
-                    <img src="{{asset('img/logo.png')}}" alt="Logo" class="logo-img">
+                <!--    <img src="{{asset('img/logo.png')}}" alt="Logo" class="logo-img"> -->
                 </div>
-                <div class="sidebar-brand-text mx-3">DEI</div>
+                <div class="sidebar-brand-text mx-3">Cinemagic</div>
             </a>
 
             <!-- Divider -->
@@ -41,7 +41,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{Route::currentRouteName()=='admin'? 'active': ''}}">
-                <a class="nav-link" href="{{route('admin')}}">
+                <a class="nav-link" href="{{route('admin.home')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -186,8 +186,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -201,7 +200,7 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>
