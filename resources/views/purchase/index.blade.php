@@ -61,28 +61,37 @@
                 <div class="row">
                     <!-- Payment info -->
                     @if (app('request')->input('type') == 'payment')
-                        <h4>Payment:</h4>
-                        @include('partials.payment')
+                        @if (!Auth::user())
+                            <br>
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    @include('auth.login-sect')
+                                </div>
+                            </div>
+                        @else
+                            <h4>Payment:</h4>
+                            @include('partials.payment')
+                        @endisset
                     @endif
-                </div>
             </div>
         </div>
+    </div>
+    <br>
+    <!-- If is necessary select places -->
+    @if ($nPlaces != '' && app('request')->input('type') != 'payment')
+        <h4>Escolha o seu lugar: </h4>
         <br>
-        <!-- If is necessary select places -->
-        @if ($nPlaces != '' && app('request')->input('type') != 'payment')
-            <h4>Escolha o seu lugar: </h4>
-            <br>
-            <div>
-                <form method="GET" action="{{ '/purchase/' . $filme->id . '/' . $sessao->id }}">
-                    @include('partials.salas', ['places' => $places, 'cols' => $cols])
-                    <br>
-                    <input type="hidden" name="newCol" value="{{ app('request')->input('col') }}">
-                    <input type="hidden" name="newRow" value="{{ app('request')->input('row') }}">
-                    <input type="hidden" name="newLugarId" value="{{ app('request')->input('lugar_id') }}">
-                    <input type="hidden" name="type" value="payment">
-                    <button class="btn btn-primary" type="submit">Continuar</button>
-                </form>
-            </div>
-        @endif
-        <br>
-    @endsection
+        <div>
+            <form method="GET" action="{{ '/purchase/' . $filme->id . '/' . $sessao->id }}">
+                @include('partials.salas', ['places' => $places, 'cols' => $cols])
+                <br>
+                <input type="hidden" name="newCol" value="{{ app('request')->input('col') }}">
+                <input type="hidden" name="newRow" value="{{ app('request')->input('row') }}">
+                <input type="hidden" name="newLugarId" value="{{ app('request')->input('lugar_id') }}">
+                <input type="hidden" name="type" value="payment">
+                <button class="btn btn-primary" type="submit">Continuar</button>
+            </form>
+        </div>
+    @endif
+    <br>
+@endsection

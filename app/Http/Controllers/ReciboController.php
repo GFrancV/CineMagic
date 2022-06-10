@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filme;
 use App\Models\Recibo;
+use App\Models\Sessoe;
 use App\Models\Bilhete;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Requests\ReciboPost;
 use Illuminate\Support\Facades\Storage;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReciboController extends Controller
 {
@@ -59,6 +61,17 @@ class ReciboController extends Controller
             $newBilhete->save();
         }
 
-        return view('purchase.finish', ['reciboId' => $newRecibo->id]);
+        //Generate PDF and save
+        $pdf = PDF::loadView('recibo.index', ['recibo' => $newRecibo])->save('../public/recibos/recibo' . $newBilhete->id . '.pdf');
+
+
+        $bilhetes = Bilhete::all()->where('recibo_id', $newRecibo->id);
+        foreach ($bilhetes as $bl) {
+            $bilheteFirst = $bl;
+        }
+        $session = Sessoe::find($bilheteFirst->sessao_id);
+        $filme = Filme::find($session->filme_id);
+
+        return view('purchase.finish', ['reciboId' => $newRecibo->id, 'bilhetes' => $bilhetes, 'filme' => $filme, 'session' => $session]);
     }
 }

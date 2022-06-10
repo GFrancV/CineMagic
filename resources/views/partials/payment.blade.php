@@ -1,5 +1,5 @@
+@isset(Auth::user()->id)
     <div class="container" style="font-size: 20px">
-
         <form method="POST" action="{{ route('recibo.store') }}" class="form-group" enctype="multipart/form-data">
             @csrf
             <!-- Hidden forms -->
@@ -49,8 +49,7 @@
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="form-check">
-                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="mbwatPayment"
-                            value="MBWAY">
+                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="mbwatPayment" value="MBWAY">
                         <label class="form-check-label" for="mbwatPayment">
                             <img src="/images/icons/payments/mbway_payment.png" alt="mbway" class="">
                         </label>
@@ -58,8 +57,7 @@
                 </div>
                 <div class="col-sm-4 d-flex justify-content-center">
                     <div class="form-check">
-                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="paypalPayment"
-                            value="PAYPAL">
+                        <input class="input-hidden" type="radio" name="tipo_pagamento" id="paypalPayment" value="PAYPAL">
                         <label class="form-check-label" for="paypalPayment">
                             <img src="/images/icons/payments/paypal_payment.png" alt="paypal" class="">
                         </label>
@@ -74,23 +72,23 @@
             <input type="text" class="form-control" id="ref_pagamento" name="ref_pagamento"
                 value="{{ old('ref_pagamento') }}">
             <!--
-            <div class="row">
-                <div class="col-sm-8">
-                    <label for="cardNumber" class="form-label">Numero de cartão:</label>
-                    <input type="number" class="form-control" id="cardNumber" name="cardNumver" required>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <label for="cardNumber" class="form-label">Numero de cartão:</label>
+                        <input type="number" class="form-control" id="cardNumber" name="cardNumver" required>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="CVC" class="form-label">CVC:</label>
+                        <input type="number" class="form-control" id="CVC" name="CVC" required>
+                    </div>
                 </div>
-                <div class="col-sm-4">
-                    <label for="CVC" class="form-label">CVC:</label>
-                    <input type="number" class="form-control" id="CVC" name="CVC" required>
-                </div>
-            </div>
-            <br>
-            <label for="mbWay" class="form-label">Numero de telemóvel:</label>
-            <input type="number" class="form-control" id="mbWay" name="mbWay" required>
-            <br>
-            <label for="emailPaypal" class="form-label">Email de PayPal:</label>
-            <input type="email" class="form-control" id="emailPaypal" name="emailPaypal" required>
-            -->
+                <br>
+                <label for="mbWay" class="form-label">Numero de telemóvel:</label>
+                <input type="number" class="form-control" id="mbWay" name="mbWay" required>
+                <br>
+                <label for="emailPaypal" class="form-label">Email de PayPal:</label>
+                <input type="email" class="form-control" id="emailPaypal" name="emailPaypal" required>
+                -->
             <br>
             <div class="row">
                 <div class="col-sm-6"></div>
@@ -136,3 +134,4 @@
             </div>
         </form>
     </div>
+@endisset

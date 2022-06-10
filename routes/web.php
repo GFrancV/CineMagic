@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\PurchaseController;
 
 /*
@@ -30,7 +31,9 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.ed
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
 
-
+//Bilhete
+Route::get('/bilhete/{idBilhete}', [BilheteController::class, 'index'])->name('bilhete.index');
+Route::get('/bilhete/{idBilhete}/pdf', [BilheteController::class, 'pdf'])->name('bilhete.pdf');
 
 //Recibo
 Route::get('/recibo/{reciboId}', [ReciboController::class, 'index'])->name('recibo.index');
