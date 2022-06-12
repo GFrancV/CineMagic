@@ -6,6 +6,7 @@ use App\Models\Sala;
 use App\Models\Filme;
 use App\Models\Lugare;
 use App\Models\Sessoe;
+use App\Models\Bilhete;
 use App\Models\Configuracao;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PageController;
@@ -34,8 +35,10 @@ class PurchaseController extends Controller
             return redirect('/');
         }
 
+        $bilhetes = Bilhete::all()->where('sessao_id', $session->id);
+
         return view('purchase.index',  ['filme' => $filme, 'sessao' => $session, 'sala' => $sala,
-            'places' => $places, 'cols' => $cols, 'nPlaces' => $nPlaces, 'price' => $price]);
+            'places' => $places, 'cols' => $cols, 'nPlaces' => $nPlaces, 'price' => $price, 'bilhetes' => $bilhetes]);
     }
 
     //test function

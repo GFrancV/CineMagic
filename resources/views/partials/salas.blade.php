@@ -21,6 +21,10 @@
     <tbody>
         @php
             $aux = '';
+            foreach ($places as $placeAux) {
+                $lugar_id = $placeAux->id;
+                break;
+            }
 
             foreach ($places as $place) {
                 echo '<tr>';
@@ -32,11 +36,9 @@
                         echo "<input type='hidden' name='nPlaces' value='" . $nPlaces . "' >";
                         echo "<input type='hidden' name='row' value='" . $place->fila . "' >";
                         echo "<input type='hidden' name='col' value='" . $j + 1 . "' >";
-
                         foreach ($places as $placeAux) {
                             if (strcmp($placeAux->fila, $place->fila) == 0 && strcmp($placeAux->posicao, $j + 1) == 0) {
                                 echo "<input type='hidden' name='lugar_id' value='" . $placeAux->id . "' >";
-                            } else {
                             }
                         }
 
@@ -48,18 +50,32 @@
                             $auxActive = true;
                             $auxPaint = $auxPaint - 1;
                         } else {
+                            $auxSitUsed = 0;
                             if ($auxActive && $auxPaint > 0) {
                                 echo '<button class="btn-place-active" type="submit">
                                             <i class="fas fa-couch cinema-seats"></i>
                                         </button> </form>';
                                 $auxPaint = $auxPaint - 1;
-                            } else {
+                                $auxSitUsed = 1;
+                            } elseif (isset($bilhetes)) {
+                                foreach ($bilhetes as $bilhete) {
+                                    if ($bilhete->lugar_id == $lugar_id) {
+                                        echo '<button class="btn-place-active" type="submit" disabled>
+                                                    <i class="fas fa-couch cinema-seats"></i>
+                                                </button> </form>';
+                                        $auxSitUsed = 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!$auxSitUsed) {
                                 echo '<button class="btn-place" type="submit">
                                         <i class="fas fa-couch cinema-seats"></i>
-                                    </button> </form>';
+                                        </button> </form>';
                             }
                         }
                         echo '</td>';
+                        $lugar_id++;
                     }
                 }
                 $aux = $place->fila;
