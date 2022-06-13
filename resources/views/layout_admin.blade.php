@@ -44,6 +44,19 @@
                 </a>
             </li>
 
+            @if (Auth::user()->tipo == 'F')
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.acesso' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.acesso') }}">
+                        <i class="fas fa-fw fa-qrcode"></i>
+                        <span>Controlo de acesso</span>
+                    </a>
+                </li>
+            @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 

@@ -14,7 +14,7 @@
                     </span>
 
                     <!-- Nav Item - Dashboard -->
-                    <ul class="nav-item {{ Route::currentRouteName() == 'recibos' ? 'active' : '' }}">
+                    <ul class="nav-item {{ Route::currentRouteName() == 'historico.recibos' ? 'active' : '' }}">
                         <a class="nav-link " href="/historico/recibos">
                             <i class="fas fa-fw fa-receipt"></i>
                             <span>Recibos</span>
@@ -25,7 +25,7 @@
                     <hr class="sidebar-divider d-none d-md-block">
 
                     <!-- Nav Item - Dashboard -->
-                    <ul class="nav-item {{ Route::currentRouteName() == 'users' ? 'active' : '' }}">
+                    <ul class="nav-item {{ Route::currentRouteName() == 'historico.bilhetes' ? 'active' : '' }}">
                         <a class="nav-link" href="/historico/bilhetes">
                             <i class="fas fa-fw fa-ticket-alt"></i>
                             <span>Bilhetes</span>

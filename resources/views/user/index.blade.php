@@ -16,7 +16,7 @@
                     </span>
 
                     <!-- Nav Item - Dashboard -->
-                    <ul class="nav-item {{ Route::currentRouteName() == 'users' ? 'active' : '' }}">
+                    <ul class="nav-item {{ Route::currentRouteName() == 'user.edit' ? 'active' : '' }}">
                         <a class="nav-link" href="{{ '/users/' . Auth::user()->id . '/edit' }}">
                             <i class="fas fa-fw fa-user-alt"></i>
                             <span>Profile</span>
@@ -34,11 +34,11 @@
                         </a>
                     </ul>
 
-                    @php
-                        if (strcmp(Auth::user()->tipo, 'A') == 0) {
-                            echo "<hr class='sidebar-divider d-none d-md-block'> <ul class='nav-item'> <a class='nav-link' href='{{ " . '/admin' . " }}'' ><i class='fas fa-tachometer-alt fa-sm fa-fw'></i>Admin dashboard</a></ul>";
-                        }
-                    @endphp
+                    @if (Auth::user()->tipo == 'A' || Auth::user()->tipo == 'F')
+                        <hr class='sidebar-divider d-none d-md-block'>
+                        <ul class='nav-item'> <a class='nav-link' href='/admin'><i
+                                    class='fas fa-tachometer-alt fa-sm fa-fw'></i>Admin dashboard</a></ul>
+                    @endif
 
                     <!-- Divider -->
                     <hr class="sidebar-divider d-none d-md-block">
@@ -76,7 +76,7 @@
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <a class="btn btn-primary" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form').submit();">Logout</a>
+                                                                                                                                                        document.getElementById('logout-form').submit();">Logout</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>

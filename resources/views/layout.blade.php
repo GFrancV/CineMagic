@@ -44,7 +44,8 @@
                     </li>
                     @isset(Auth::user()->id)
                         @if (Auth::user()->tipo == 'C')
-                            <li class="nav-item">
+                            <li
+                                class="nav-item {{ Route::currentRouteName() == 'historico.recibos' ? 'active' : '' }} {{ Route::currentRouteName() == 'historico.bilhetes' ? 'active' : '' }}">
                                 <a class="nav-link" href="/historico/recibos">Historico</a>
                             </li>
                         @endif

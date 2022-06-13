@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\AcessoController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\PurchaseController;
@@ -57,6 +58,8 @@ Route::view('/admin', 'layout_admin')->name('admin');
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);
+Route::get('admin/acesso', [AcessoController::class, 'index'])->name('admin.acesso');
+
 
 
 Auth::routes(['verify' => true]);
