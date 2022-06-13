@@ -29,7 +29,7 @@ Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'layout_admin')->name('home');
 
-    Route::get('/filmes', [FilmeController::class, 'filmes']);
+    Route::get('/filmes', [FilmeController::class, 'filmes'])->name('filmes');
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

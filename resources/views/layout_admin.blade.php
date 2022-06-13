@@ -38,21 +38,21 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item {{Route::currentRouteName()=='admin'? 'active': ''}}">
-                <a class="nav-link" href="{{route('admin.home')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
+            @can('viewAny', App\Models\Cliente::class)
+                <li class="nav-item {{ Route::currentRouteName() == 'admin.filmes' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.filmes') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>FILMES</span>
+                    </a>
+                </li>
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
            
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item {{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/filmes">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Filmes</span>
                 </a>
