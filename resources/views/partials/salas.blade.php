@@ -1,3 +1,10 @@
+<div>
+    <div class="disponivel"></div> -> Disponivel
+    <br>
+    <br>
+    <div class="usado"></div> -> Usado
+</div>
+<br>
 <table>
     <thead>
         <tr>

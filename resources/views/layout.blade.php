@@ -42,9 +42,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Loremp Impsum</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Loremp Impsum</a>
-                    </li>
+                    @isset(Auth::user()->id)
+                        @if (Auth::user()->tipo == 'C')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/historico/recibos">Historico</a>
+                            </li>
+                        @endif
+                    @endisset
                 </ul>
 
                 <ul class="navbar-nav">

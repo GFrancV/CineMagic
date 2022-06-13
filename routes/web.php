@@ -7,6 +7,7 @@ use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\HistoricoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,11 @@ Route::get('/recibo/{reciboId}', [ReciboController::class, 'index'])->name('reci
 Route::get('/recibo/{reciboId}/pdf', [ReciboController::class, 'pdf'])->name('recibo.pdf');
 Route::get('/recibo/{reciboId}/download', [ReciboController::class, 'download'])->name('recibo.pdf');
 Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store');
+
+//Historico
+Route::get('/historico/recibos',  [HistoricoController::class, 'recibos'])->name('historico.recibos');
+Route::get('/historico/bilhetes',  [HistoricoController::class, 'bilhetes'])->name('historico.bilhetes');
+
 
 //Test
 Route::get('/test/', [PurchaseController::class, 'draw']);

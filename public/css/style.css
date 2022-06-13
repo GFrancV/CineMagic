@@ -88,3 +88,15 @@ input[type="radio"] + label > img {
     /* IMPORTANTE */
     text-align: center;
 }
+
+.disponivel {
+    background-color: #113f67;
+    width: 30px;
+    height: 30px;
+}
+
+.usado {
+    background-color: #fdd200;
+    width: 30px;
+    height: 30px;
+}
