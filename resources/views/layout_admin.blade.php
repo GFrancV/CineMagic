@@ -37,38 +37,32 @@
             </a>
 
             <!-- Divider -->
+           
+
             <hr class="sidebar-divider my-0">
             @can('viewAny', App\Models\Cliente::class)
                 <li class="nav-item {{ Route::currentRouteName() == 'admin.filmes' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.filmes') }}">
                         <i class="fas fa-fw fa-table"></i>
-                        <span>FILMES</span>
+                        <span>Filmes</span>
                     </a>
                 </li>
             @endcan
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-           
-            <li class="nav-item {{ Route::currentRouteName() == 'admin' ? 'active' : '' }}">
-            <a class="nav-link" href="/admin/filmes">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Filmes</span>
-                </a>
-            </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/')}}">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Parte Publica</span>
                 </a>
             </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -113,7 +107,7 @@
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
-                                    @if (auth()->user()->tipo != 'O')
+                                    @if (auth()->user()->tipo == 'A')
                                         <a class="dropdown-item"
                                             href="#">
                                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -168,7 +162,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Departamento de Engenharia Informática 2020</span>
+                        <span>Copyright &copy; Cinemagic</span>
                     </div>
                 </div>
             </footer>

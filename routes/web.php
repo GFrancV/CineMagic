@@ -29,7 +29,22 @@ Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'layout_admin')->name('home');
 
-    Route::get('/filmes', [FilmeController::class, 'filmes'])->name('filmes');
+    Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
+
+
+    // filmes
+    Route::get('filmes', [FilmeController::class, 'admin_index'])->name('filmes')
+        ->middleware('can:viewAny,App\Models\Filme');
+    Route::get('filmes/{filme}/edit', [FilmeController::class, 'edit'])->name('filmes.edit')
+        ->middleware('can:view,filme');
+    Route::get('filmes/create', [FilmeController::class, 'create'])->name('filmes.create')
+        ->middleware('can:create,App\Models\Filme');
+    Route::post('filmes', [FilmeController::class, 'store'])->name('filmes.store')
+        ->middleware('can:create,App\Models\Filme');
+    Route::put('filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update')
+        ->middleware('can:update,filme');
+    Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy')
+        ->middleware('can:delete,filme');
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

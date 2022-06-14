@@ -50,19 +50,18 @@
                     <td nowrap>
 
                         @can('view', $filme)
-                            <a href="{{route('admin.filmes.edit', ['filme' => $filme])}}" class="btn btn-primary btn-sm"
-                                role="button" aria-pressed="true"> Editar
-                               <!-- <i class="fas @cannot('update', $filme) fa-eye
+                            <a href="{{ route('admin.filmes.edit', ['filme' => $filme]) }}" class="btn btn-primary btn-sm"
+                                role="button" aria-pressed="true">
+                                <i class="fas @cannot('update', $filme) fa-eye
                         @else
-                        fa-pen @endcan"></i> -->
+                        fa-pen @endcan"></i>
                             </a>
-                       <!-- @else
+                        @else
                             <span class="btn btn-secondary btn-sm disabled"><i
                                     class="fa @cannot('update', $filme) fa-eye
                         @else
-                        fa-pen @endcan"></i></span> -->
+                        fa-pen @endcan"></i></span>
                         @endcan
-                        <!--
                         @can('delete', $filme)
                             <form action="{{ route('admin.filmes.destroy', ['filme' => $filme]) }}" method="POST"
                                 class="d-inline" onsubmit="return confirm('Tem a certeza que deseja apagar o registo?')">
@@ -74,13 +73,6 @@
                             </form>
                         @else
                             <span class="btn btn-secondary btn-sm disabled"><i class="fa fa-trash"></i></span>
-                        @endcan -->
-                        @can('delete', $filme)
-                            <form action="{{route('admin.alunos.destroy', ['aluno' => $aluno])}}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
-                            </form>
                         @endcan
                     </td>
                 </tr>
