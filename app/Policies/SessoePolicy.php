@@ -89,6 +89,6 @@ class SessoePolicy
      */
     public function forceDelete(User $user, Sessoe $sessoe)
     {
-        return ($user->tipo == 'A');
+        return ($user->tipo == 'A');    
     }
 }

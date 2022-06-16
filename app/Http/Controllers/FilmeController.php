@@ -18,7 +18,7 @@ class FilmeController extends Controller
             $qry->where('genero', $genero);
         }
         $filmes = $qry->paginate(10);
-        $generos = Genero::pluck('nome', 'abreviatura');
+        $generos = Genero::pluck('nome', 'code');
 
         return view('filmes.admin', compact('filmes', 'generos', 'genero'));
     }
