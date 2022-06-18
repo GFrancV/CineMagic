@@ -6,16 +6,21 @@ use App\Models\Filme;
 use App\Models\Genero;
 use Illuminate\Http\Request;
 use App\Http\Requests\FilmePost;
+use Illuminate\Support\Facades\Storage;
 
 class FilmeController extends Controller
 {
     public function admin_index(Request $request)
     {
         $genero = $request->genero ?? '';
+        $genero_code = Genero::all()->where('nome', $genero);
 
         $qry = Filme::query();
         if ($genero) {
-            $qry->where('genero', $genero);
+            foreach ($genero_code as $code){
+                $qry->where('genero_code', $code->code);
+                break;
+            }
         }
         $filmes = $qry->paginate(10);
         $generos = Genero::pluck('nome', 'code');
@@ -73,9 +78,33 @@ class FilmeController extends Controller
 
     public function destroy(Filme $filme)
     {
-        $filme->delete();
-        return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->nome . '" foi apagada com sucesso!')
+        $oldTitulo = $filme->titulo;
+        $oldID = $filme->id;
+        $oldUrlCartaz = $filme->cartaz_url;
+
+        try {
+            $filme->delete();
+            Filme::destroy($oldID);
+            Storage::delete('public/storage/cartazes/' . $oldUrlCartaz);
+            return redirect()->route('admin.filmes')
+            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi apagado com sucesso!')
             ->with('alert-type', 'success');
+        } catch (\Throwable $th) {
+            // $th é a exceção lançada pelo sistema - por norma, erro ocorre no servidor BD MySQL
+            // Descomentar a próxima linha para verificar qual a informação que a exceção tem
+            //dd($th, $th->errorInfo);
+
+            if ($th->errorInfo[1] == 1451) {   // 1451 - MySQL Error number for "Cannot delete or update a parent row: a foreign key constraint fails (%s)"
+                return redirect()->route('admin.filmes')
+                ->with('alert-msg', 'Não foi possível apagar o Filme "' . $oldTitulo . '", porque este filme já tem sessões!')
+                ->with('alert-type', 'danger');
+            } else {
+                return redirect()->route('admin.filmes')
+                ->with('alert-msg', 'Não foi possível apagar o Filme "' . $oldTitulo . '". Erro: ' . $th->errorInfo[2])
+                ->with('alert-type', 'danger');
+            }
+        }
+
+
     }
 }
