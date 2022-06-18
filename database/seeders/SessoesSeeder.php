@@ -235,7 +235,7 @@ class SessoesSeeder extends Seeder
         $inicio = $data->copy()->subDays(8)->addSeconds(rand(39600, 78000));
         $fim = $inicio->copy()->subDays(7)->addSeconds(rand(60, 300000));
         return [
-            'filme_id' => $filme,
+            'filmes_id' => $filme,
             'sala_id' => $sala,
             'data' => $data->toDateString(),
             'horario_inicio' => $hora . ":00:00",

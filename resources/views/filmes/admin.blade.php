@@ -10,22 +10,7 @@
                     Filme</a>
             @endcan
         </div>
-        <div class="col-9">
-            <form method="GET" action="{{ route('admin.filmes') }}" class="form-group">
-                <div class="input-group">
-                    <select class="custom-select" name="titulo" id="inputCurso" aria-label="Genero">
-                        <option value="" {{ '' == old('titulo', $titulo) ? 'selected' : '' }}>Todos Géneros</option>
-                        @foreach ($generos as $abr => $sumario)
-                            <option value={{ $abr }} {{ $abr == old('titulo', $titulo) ? 'selected' : '' }}>
-                                {{ $sumario }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+      
     </div>
     <table class="table">
         <thead>
@@ -43,8 +28,8 @@
             @foreach ($filmes as $filme)
                 <tr>
                     <td>{{ $filme->titulo }}</td>
-                    <td>{{ $filme->genero }}</td>
-                    <td>{{ $filme->cartaz }}</td>
+                    <td>{{ $filme->genero_code }}</td>
+                    <td>{{ $filme->cartaz_url }}</td>
                     <td>{{ $filme->sumario }}</td>
                     <td>{{ $filme->trailer_url }}</td>
                     <td nowrap>
