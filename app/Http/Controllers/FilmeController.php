@@ -47,14 +47,18 @@ class FilmeController extends Controller
     }
     public function edit(Filme $filme)
     {
-        $generos = Genero::all();
-        return view('filmes.edit', compact('filme', 'generos'));
+        //$generos = Genero::all();
+        //return view('filmes.edit', compact('filme', 'generos'));
+        return view('filmes.edit')->withFilme($filme);
+        ;
     }
     public function create()
     {
         $generos = Genero::all();
         $filme = new Filme();
-        return view('filmes.create', compact('filme', 'generos'));
+        //return view('filmes.create', compact('filme', 'generos'));
+        return view('filmes.create');
+
     }
     public function store(FilmePost $request)
     {

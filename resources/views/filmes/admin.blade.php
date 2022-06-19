@@ -10,7 +10,6 @@
                     Filme</a>
             @endcan
         </div>
-      
         <div class="col-9">
             <form method="GET" action="{{ route('admin.filmes') }}" class="form-group">
                 <div class="input-group">
@@ -20,7 +19,6 @@
                             <option value={{ $nome }}
                                 {{ $nome == app('request')->input('genero') ? 'selected' : '' }}>
                                 {{ $nome }}</option>
-
                         @endforeach
                     </select>
                     <div class="input-group-append">
@@ -46,10 +44,6 @@
                 <tr>
                     <td>{{ $filme->titulo }}</td>
                     <td>{{ $filme->genero_code }}</td>
-<<<<<<< HEAD
-                    <td>{{ $filme->cartaz_url }}</td>
-=======
->>>>>>> 6b6926317193a313d50ed861929c57f76a1a8777
                     <td>{{ $filme->sumario }}</td>
                     <td> <a href="{{ $filme->trailer_url }}" target="_blank">[Trailer]</a> </td>
                     <td nowrap>
