@@ -48,6 +48,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         ->middleware('can:delete,filme');
    
 
+    Route::post('admin/filmes',[FilmeController::class, 'store'])->name('admin.filmes.store');
+    Route::put('admin/filmes/{filme}',[FilmeController::class, 'update'])->name('admin.filmes.update');
+    Route::delete('admin/filmes/{filme}',[FilmeController::class, 'destroy'])->name('admin.filmes.destroy');
+
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

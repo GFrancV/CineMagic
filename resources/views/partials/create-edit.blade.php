@@ -1,7 +1,6 @@
 <div class="form-group">
     <label for="inputNome">Nome</label>
     <input type="text" class="form-control" name="nome" id="inputNome" value="" />
-    <div class="small text-danger"> Mensagem de erro - Exemplo. </div>
 </div>
 
 <div class="form-group">
@@ -18,11 +17,9 @@
                 </select>
             </div>
         </form>
-    <div class="small text-danger"> Mensagem de erro - Exemplo. </div>
 </div>
 
 <div class="form-group">
     <label for="inputSumario">Sinopse</label>
     <textarea rows="4" cols="50" name="comment" > Coloque a sinopse do filme </textarea>
-    <div class="small text-danger"> Mensagem de erro - Exemplo. </div>
 </div>
