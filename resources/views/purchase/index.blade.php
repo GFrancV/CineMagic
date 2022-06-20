@@ -77,7 +77,6 @@
         </div>
     </div>
     <br>
-    {{ $sessoes }}
     <!-- If is necessary select places -->
     @if ($nPlaces != '' && app('request')->input('type') != 'payment')
         <h4>Escolha o seu lugar: </h4>
