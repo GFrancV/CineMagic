@@ -35,9 +35,10 @@
             <p>Insira os dados:</p>
             <form action="{{ '/admin/acesso/' . $sessionId }}" method="GET">
                 <input type="hidden" name="type" value="{{ app('request')->input('type') }}">
-                <input type="{{ app('request')->input('type') == 'id' ? 'number' : 'text' }}" class="form-control"
+                <input type="{{ app('request')->input('type') == 'qr' ? 'text' : 'number' }}" class="form-control"
                     name="bilhete" value="{{ old('bilhete') }}" required>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <small id="inputHelp"
+                    class="form-text text-muted">{{ app('request')->input('type') == 'qr' ? 'Example: http://cinemagic.test/bilhete/91' : 'Example: 54' }}</small>
                 <br>
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary">Consultar</button>

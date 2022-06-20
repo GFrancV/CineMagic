@@ -46,20 +46,27 @@ class AcessoController extends Controller
         $filme = Filme::find($session->filme_id);
 
         if ($bilhete) {
-            if ($type == 'id' || $type == '') {
-                try {
-                    $infoBilhete = Bilhete::find($bilhete);
-                    if ($infoBilhete->sessao_id == $sessionId) {
-                        return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,'filme' => $filme, 'status' => 'show', 'sessionId' => $sessionId]);
-                    }
-                    else {
-                            return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'error', 'sessionId' => $sessionId]);
-                        }
-                    } catch (\Throwable $th) {
+            if ($type == 'qr') {
+                $idBilhete = substr($bilhete, 30);
+            }
+            else if ($type == 'id' || $type == ''){
+                $idBilhete = $bilhete;
+            }
+
+            try {
+                $infoBilhete = Bilhete::find($idBilhete);
+                if ($infoBilhete->sessao_id == $sessionId) {
+                    return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,'filme' => $filme, 'status' => 'show', 'sessionId' => $sessionId]);
+                }
+                else {
                     return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'error', 'sessionId' => $sessionId]);
                 }
             }
+            catch (\Throwable $th) {
+                return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'error', 'sessionId' => $sessionId]);
+            }
         }
+
         return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'normal', 'sessionId' => $sessionId]);
     }
 
