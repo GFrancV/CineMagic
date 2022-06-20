@@ -39,14 +39,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         ->middleware('can:view,filme');
     Route::get('filmes/create', [FilmeController::class, 'create'])->name('filmes.create')
         ->middleware('can:create,App\Models\Filme');
-   
+
     Route::post('filmes', [FilmeController::class, 'store'])->name('filmes.store')
         ->middleware('can:create,App\Models\Filme');
     Route::put('filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update')
         ->middleware('can:update,filme');
     Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy')
         ->middleware('can:delete,filme');
-   
 
     Route::post('admin/filmes',[FilmeController::class, 'store'])->name('admin.filmes.store');
     Route::put('admin/filmes/{filme}',[FilmeController::class, 'update'])->name('admin.filmes.update');

@@ -7,7 +7,7 @@
         @method('PUT')
         @include('filmes.partials.create-edit')
         <div class="form-group text-right">
-            <button type="submit" class="btn btn-success" name="ok">Save</button>
+            <button type="submit" class="btn btn-success" name="ok">Alterar</button>
             <a href="{{ route('admin.filmes') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>

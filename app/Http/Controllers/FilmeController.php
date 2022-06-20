@@ -48,7 +48,7 @@ class FilmeController extends Controller
     public function edit(Filme $filme)
     {
         $generos = Genero::all();
-        //return view('filmes.edit', compact('filme', 'generos'));
+
         return view('filmes.edit', ['generos' => $generos, 'filme' => $filme]);
 
     }
@@ -79,10 +79,16 @@ class FilmeController extends Controller
 
     public function update(FilmePost $request, Filme $filme)
     {
-        $filme->fill($request->validated());
+        $validated_data = $request->validated();
+        $filme->titulo = $validated_data['titulo'];
+        $filme->trailer_url = $validated_data['trailer_url'];
+        $filme->genero_code = $validated_data['genero_code'];
+        $filme->ano = $validated_data['ano'];
+        $filme->sumario = $validated_data['sumario'];
         $filme->save();
+
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->nome . '" foi alterada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi alterada com sucesso!')
             ->with('alert-type', 'success');
     }
 
