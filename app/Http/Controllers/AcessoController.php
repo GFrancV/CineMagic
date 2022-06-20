@@ -17,9 +17,13 @@ class AcessoController extends Controller
         $sessions_aux = Sessoe::where('data', '2020-01-02');
 
         $sessions = '';
+        $horarios = '';
+        $datas = '';
         $salas = '';
         if ($film_id) {
             $sessions = Sessoe::all()->where('filme_id', $film_id);
+            $horarios = $sessions->pluck('horario_inicio')->unique()->sort();
+            $datas = $sessions->pluck('data')->unique()->sort();
             $salas = Sala::whereIn('id', $sessions->pluck('sala_id'))->get();
         }
 
@@ -35,7 +39,7 @@ class AcessoController extends Controller
 
         $filmes = Filme::whereIn('id', $sessions_aux->pluck('filme_id'))->get();
 
-        return view('acesso.index', ['filmes' => $filmes, 'sessions' => $sessions, 'salas' => $salas, 'select_sesion' => $select_sesion]);
+        return view('acesso.index', ['filmes' => $filmes, 'horarios' => $horarios, 'datas' => $datas, 'salas' => $salas, 'select_sesion' => $select_sesion]);
     }
 
     public function access_control(Request $request, $sessionId){

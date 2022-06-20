@@ -45,10 +45,10 @@
                     <label for="sala" class="form-label">Horario:</label>
                     <select class="form-control" id="horario" name="horario" required>
                         <option value="">-- Select horario --</option>
-                        @foreach ($sessions as $session)
-                            <option value="{{ $session->horario_inicio }}"
-                                {{ $session->horario_inicio == app('request')->input('horario') ? 'selected' : '' }}>
-                                {{ $session->horario_inicio }} </option>
+                        @foreach ($horarios as $horario)
+                            <option value="{{ $horario }}"
+                                {{ $horario == app('request')->input('horario') ? 'selected' : '' }}>
+                                {{ $horario }} </option>
                         @endforeach
                     </select>
                 </div>
@@ -56,10 +56,10 @@
                     <label for="data" class="form-label">Data:</label>
                     <select class="form-control" id="data" name="data" required>
                         <option value="">-- Select data --</option>
-                        @foreach ($sessions as $session)
-                            <option value="{{ $session->data }}"
-                                {{ $session->data == app('request')->input('data') ? 'selected' : '' }}>
-                                {{ $session->data }} </option>
+                        @foreach ($datas as $data)
+                            <option value="{{ $data }}"
+                                {{ $data == app('request')->input('data') ? 'selected' : '' }}>
+                                {{ $data }} </option>
                         @endforeach
                     </select>
                 </div>
