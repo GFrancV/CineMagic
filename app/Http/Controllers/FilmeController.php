@@ -57,7 +57,7 @@ class FilmeController extends Controller
         $generos = Genero::all();
         $filme = new Filme();
         //return view('filmes.create', compact('filme', 'generos'));
-        return view('filmes.create', ['generos' => $generos]);
+        return view('filmes.create', ['generos' => $generos, 'filme' => $filme]);
 
 
     }
@@ -94,22 +94,25 @@ class FilmeController extends Controller
 
     public function destroy(Filme $filme)
     {
-        $oldTitulo = $filme->titulo;
         $oldID = $filme->id;
+        $oldTitulo = $filme->titulo;
+        $oldTrailerUrl = $filme->trailer_url;
+        $oldGenero = $filme->genero_code;
+        $oldAno = $filme->ano;
+        $oldSumario = $filme->sumario;
         $oldUrlCartaz = $filme->cartaz_url;
 
         try {
             $filme->delete();
-            Filme::destroy($oldID);
-            Storage::delete('public/storage/cartazes/' . $oldUrlCartaz);
-            return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi apagado com sucesso!')
-            ->with('alert-type', 'success');
-        } catch (\Throwable $th) {
-            // $th é a exceção lançada pelo sistema - por norma, erro ocorre no servidor BD MySQL
-            // Descomentar a próxima linha para verificar qual a informação que a exceção tem
-            //dd($th, $th->errorInfo);
+            if ($oldUrlCartaz) {
+                Storage::delete('public/storage/cartazes/' . $oldUrlCartaz);
+            }
 
+            return redirect()->route('admin.filmes')
+                ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi apagado com sucesso!')
+                ->with('alert-type', 'success');
+        }
+        catch (\Throwable $th) {
             if ($th->errorInfo[1] == 1451) {   // 1451 - MySQL Error number for "Cannot delete or update a parent row: a foreign key constraint fails (%s)"
                 return redirect()->route('admin.filmes')
                 ->with('alert-msg', 'Não foi possível apagar o Filme "' . $oldTitulo . '", porque este filme já tem sessões!')
