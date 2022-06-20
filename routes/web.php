@@ -30,6 +30,9 @@ Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 Route::get('/users', [UserController::class, 'index'])->name('user.index');
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 
+Route::put('/users/{user}/edit',[UserController::class, 'update'])->name('user.update');
+Route::delete('/users/{user}/foto',[UserController::class, 'destroy_foto'])->name('user.foto.destroy');
+
 //Purchase
 Route::get('/purchase/{filmeId}/{sessionId}', [PurchaseController::class, 'index'])->name('purchase.index');
 
@@ -46,7 +49,6 @@ Route::post('/recibo',  [ReciboController::class, 'store'])->name('recibo.store'
 //Historico
 Route::get('/historico/recibos',  [HistoricoController::class, 'recibos'])->name('historico.recibos');
 Route::get('/historico/bilhetes',  [HistoricoController::class, 'bilhetes'])->name('historico.bilhetes');
-
 
 //Test
 Route::get('/test/', [PurchaseController::class, 'draw']);
@@ -73,7 +75,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         ->middleware('can:update,filme');
     Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy')
         ->middleware('can:delete,filme');
-        Route::delete('admin/filmes/{filme}/foto',[FilmeController::class, 'destroy_foto'])->name('filmes.foto.destroy')
+    Route::delete('admin/filmes/{filme}/foto',[FilmeController::class, 'destroy_foto'])->name('filmes.foto.destroy')
         ->middleware('can:update,filme');
 
     //Acesso
