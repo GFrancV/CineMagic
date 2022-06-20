@@ -58,7 +58,10 @@ Route::view('/admin', 'layout_admin')->name('admin');
 
 //Administrator routes
 Route::get('admin/filmes', [FilmeController::class, 'admin_index']);
+
 Route::get('admin/acesso', [AcessoController::class, 'index'])->name('admin.acesso');
+Route::get('admin/acesso/{sessionId}', [AcessoController::class, 'access_control'])->name('admin.acesso.control');
+Route::put('admin/acesso/{bilhete}', [AcessoController::class, 'aceitar_acesso'])->name('admin.acesso.acept');
 
 
 
