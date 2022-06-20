@@ -47,28 +47,33 @@ class FilmeController extends Controller
     }
     public function edit(Filme $filme)
     {
-        //$generos = Genero::all();
+        $generos = Genero::all();
         //return view('filmes.edit', compact('filme', 'generos'));
-        return view('filmes.edit', ['generos' => $generos]);
-        
+        return view('filmes.edit', ['generos' => $generos, 'filme' => $filme]);
+
     }
     public function create()
     {
         $generos = Genero::all();
         $filme = new Filme();
         //return view('filmes.create', compact('filme', 'generos'));
-        return view('filmes.create', ['generos' => $generos]); 
+        return view('filmes.create', ['generos' => $generos]);
 
 
     }
     public function store(FilmePost $request)
     {
-        //$newFilme = Filme::create($request->all());
-        $filme = new Filme();
-        $filme->fill($request->validated());
-        $filme->save();
+        $validated_data = $request->validated();
+        $newFilme = new Filme;
+        $newFilme->titulo = $validated_data['titulo'];
+        $newFilme->trailer_url = $validated_data['trailer_url'];
+        $newFilme->genero_code = $validated_data['genero_code'];
+        $newFilme->ano = $validated_data['ano'];
+        $newFilme->sumario = $validated_data['sumario'];
+        $newFilme->save();
+
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->nome . '" foi criada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $newFilme->titulo . '" foi criada com sucesso!')
             ->with('alert-type', 'success');
     }
 

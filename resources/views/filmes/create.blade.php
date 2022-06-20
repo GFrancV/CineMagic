@@ -1,12 +1,12 @@
 @extends('layout_admin')
 @section('title', 'Novo Filme')
 @section('content')
-    <form method="POST" action="{{route('admin.filmes.store')}}" class="form-group">
+    <form method="POST" action="{{ route('admin.filmes.store') }}" class="form-group">
         @csrf
-        @include('partials.create-edit')
+        @include('filmes.partials.create-edit')
         <div class="form-group text-right">
-            <button type="submit" class="btn btn-success" name="ok">Save</button>
-            <a href="{{route('admin.filmes.create')}}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary" name="ok">Save</button>
+            <a href="{{ route('admin.filmes') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 @endsection
