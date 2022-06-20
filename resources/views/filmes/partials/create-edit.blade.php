@@ -39,6 +39,7 @@
     </div>
 </div>
 <br>
+
 <div class="form-group">
     <label for="inputSumario">Sinopse</label>
     <textarea class="form-control" rows="4" cols="50" name="sumario" required> {{ old('sumario', $filme->sumario) }}</textarea>
@@ -46,3 +47,11 @@
 @error('sumario')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
+
+<div class="form-group">
+    <label for="inputFoto">Upload a cartaz</label>
+    <input type="file" class="form-control-file" name="cartaz" id="inputFoto">
+    @error('foto')
+        <div class="small text-danger">{{ $message }}</div>
+    @enderror
+</div>

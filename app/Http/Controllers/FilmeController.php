@@ -123,7 +123,15 @@ class FilmeController extends Controller
                 ->with('alert-type', 'danger');
             }
         }
+    }
 
+    public function destroy_foto(Filme $filme){
+        Storage::delete('public/storage/cartazes/' .  $filme->cartaz_url);
+        $filme->cartaz_url = null;
+        $filme->save();
 
+        return redirect()->route('admin.filmes.edit', ['filme' => $filme])
+            ->with('alert-msg', 'Cartaz do filme  "' . $filme->titulo . '" foi removida!')
+            ->with('alert-type', 'success');
     }
 }

@@ -46,11 +46,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         ->middleware('can:update,filme');
     Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy')
         ->middleware('can:delete,filme');
-
-    Route::post('admin/filmes',[FilmeController::class, 'store'])->name('admin.filmes.store');
-    Route::put('admin/filmes/{filme}',[FilmeController::class, 'update'])->name('admin.filmes.update');
-    Route::delete('admin/filmes/{filme}',[FilmeController::class, 'destroy'])->name('admin.filmes.destroy');
-
+        Route::delete('admin/filmes/{filme}/foto',[FilmeController::class, 'destroy_foto'])->name('filmes.foto.destroy')
+        ->middleware('can:update,filme');
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
