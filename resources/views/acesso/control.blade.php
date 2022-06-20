@@ -37,6 +37,7 @@
                 <input type="hidden" name="type" value="{{ app('request')->input('type') }}">
                 <input type="{{ app('request')->input('type') == 'id' ? 'number' : 'text' }}" class="form-control"
                     name="bilhete" value="{{ old('bilhete') }}" required>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 <br>
                 <div class="form-group text-right">
                     <button type="submit" class="btn btn-primary">Consultar</button>

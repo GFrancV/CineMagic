@@ -52,6 +52,9 @@
             @endforeach
         </tbody>
     </table>
+    @if (sizeof($recibos) == 0)
+        <h3 class="text-center"> Não há recibos disponíveis!</h3>
+    @endif
     <caption>
         {{ $recibos->links() }}
     </caption>

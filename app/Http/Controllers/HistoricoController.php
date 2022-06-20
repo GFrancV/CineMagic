@@ -19,9 +19,15 @@ class HistoricoController extends Controller
 
     public function bilhetes(){
         $bilhetes = Bilhete::where('cliente_id', Auth::user()->id)->where('estado', 'não usado')->paginate(10);
-        foreach ($bilhetes as $bl) {
-            $bilheteFirst = $bl;
-            break;
+
+        if (sizeof($bilhetes) != 0) {
+            foreach ($bilhetes as $bl) {
+                $bilheteFirst = $bl;
+                break;
+            }
+        }
+        else {
+            return view('historico.bilhetes', ['bilhetes' => $bilhetes]);
         }
 
         $session = Sessoe::find($bilheteFirst->sessao_id);

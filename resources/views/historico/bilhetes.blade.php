@@ -17,29 +17,35 @@
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($bilhetes as $bilhete)
-                <tr>
-                    <th scope="row">{{ $bilhete->id }}</th>
-                    <td>{{ $filme->titulo }}</td>
-                    <td>{{ $session->sala_id }}</td>
-                    <td>{{ $bilhete->lugar_id }}</td>
-                    <td>{{ $session->data }}</td>
-                    <td>{{ $session->horario_inicio }}</td>
-                    <td nowrap>
-                        <a href="{{ '/bilhete/' . $bilhete->id }}" class="btn btn-primary btn-sm" role="button"
-                            aria-pressed="true" target="_blank">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                        <a href="{{ '/bilhete/' . $bilhete->id . '/pdf' }}" class="btn btn-info btn-sm" role="button"
-                            aria-pressed="true" target="_blank">
-                            PDF
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
+        @if (sizeof($bilhetes) != 0)
+            <tbody>
+                @foreach ($bilhetes as $bilhete)
+                    <tr>
+                        <th scope="row">{{ $bilhete->id }}</th>
+                        <td>{{ $filme->titulo }}</td>
+                        <td>{{ $session->sala_id }}</td>
+                        <td>{{ $bilhete->lugar_id }}</td>
+                        <td>{{ $session->data }}</td>
+                        <td>{{ $session->horario_inicio }}</td>
+                        <td nowrap>
+                            <a href="{{ '/bilhete/' . $bilhete->id }}" class="btn btn-primary btn-sm" role="button"
+                                aria-pressed="true" target="_blank">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="{{ '/bilhete/' . $bilhete->id . '/pdf' }}" class="btn btn-info btn-sm" role="button"
+                                aria-pressed="true" target="_blank">
+                                PDF
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
     </table>
+@else
+    <tbody></tbody>
+    </table>
+    <h3 class="text-center"> Não há bilhetes disponíveis!</h3>
+    @endif
     <caption>
         {{ $bilhetes->links() }}
     </caption>
