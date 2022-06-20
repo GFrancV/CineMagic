@@ -25,7 +25,10 @@ class UserPost extends FormRequest
     {
         return [
             'name' =>   'required|string',
-            'foto_url' => 'nullable|image|max:8192'
+            'foto_url' => 'nullable|image|max:8192',
+            'nif' => 'digits:9',
+            'tipo_pagamento' => 'in:VISA,MBWAY,PAYPAL',
+            'ref_pagamento' => 'numeric'
         ];
     }
 }

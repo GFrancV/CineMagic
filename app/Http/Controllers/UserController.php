@@ -25,6 +25,15 @@ class UserController extends Controller
         $validated_data = $request->validated();
         $user->name = $validated_data['name'];
 
+        if ($user->tipo == 'C') {
+            $cliente = Cliente::find($user->id);
+
+            $cliente->nif = $validated_data['nif'];
+            $cliente->tipo_pagamento = $validated_data['tipo_pagamento'];
+            $cliente->ref_pagamento = $validated_data['ref_pagamento'];
+            $cliente->save();
+        }
+
         if ($request->hasFile('foto_url')) {
             Storage::delete('public/fotos/' . $user->foto_url);
             $path = $request->foto_url->store('public/fotos/');
