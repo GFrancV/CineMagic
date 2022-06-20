@@ -13,6 +13,11 @@
                         app('request')->input('bilhete') .
                         ' invalido! Não existe ou não pertence a essa sessão',
                 ])
+            @elseif ($status == 'usado')
+                @include('partials.alert', [
+                    'alert_type' => 'danger',
+                    'alert_msg' => 'O Bilhete ' . app('request')->input('bilhete') . ' já foi usado! ',
+                ])
             @endif
             <h3>Sessão {{ $sessionId }}</h3>
             <div class="row">

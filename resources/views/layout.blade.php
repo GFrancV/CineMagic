@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue sticky-top">
         <div class="container-fluid">

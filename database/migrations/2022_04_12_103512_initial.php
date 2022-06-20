@@ -109,8 +109,8 @@ return new class extends Migration
         // Sessões
         Schema::create('sessoes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('filme_id');
-            $table->foreign('filme_id')->references('id')->on('filmes');
+            $table->foreignId('filme_id'); //
+            $table->foreign('filme_id')->references('id')->on('filme');
             $table->foreignId('sala_id');
             $table->foreign('sala_id')->references('id')->on('salas');
             $table->date('data');

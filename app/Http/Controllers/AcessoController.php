@@ -63,6 +63,12 @@ class AcessoController extends Controller
                 $infoBilhete = Bilhete::find($idBilhete);
                 $user = User::find($infoBilhete->cliente_id);
                 if ($infoBilhete->sessao_id == $sessionId) {
+                    if ($infoBilhete->estado == 'usado') {
+                        return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,
+                        'filme' => $filme, 'status' => 'usado', 'sessionId' => $sessionId,
+                        'user' => $user]);
+                    }
+
                     return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,
                     'filme' => $filme, 'status' => 'show', 'sessionId' => $sessionId,
                     'user' => $user]);
@@ -79,7 +85,7 @@ class AcessoController extends Controller
         return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'normal', 'sessionId' => $sessionId]);
     }
 
-    public function aceitar_acesso(Request $request, Bilhete $bilhete){
+    public function update(Request $request, Bilhete $bilhete){
         $bilhete->estado = $request->estado;
         $bilhete->save();
 

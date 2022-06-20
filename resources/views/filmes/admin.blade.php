@@ -13,11 +13,12 @@
         <div class="col-9">
             <form method="GET" action="{{ route('admin.filmes') }}" class="form-group">
                 <div class="input-group">
-                    <select class="custom-select" name="titulo" id="inputCurso" aria-label="Genero">
-                        <option value="" {{ '' == old('titulo', $titulo) ? 'selected' : '' }}>Todos Géneros</option>
-                        @foreach ($generos as $abr => $sumario)
-                            <option value={{ $abr }} {{ $abr == old('titulo', $titulo) ? 'selected' : '' }}>
-                                {{ $sumario }}</option>
+                    <select class="custom-select" name="genero" id="genero" aria-label="Genero">
+                        <option value="" {{ '' == old('genero') ? 'selected' : '' }}>Todos Géneros</option>
+                        @foreach ($generos as $code => $nome)
+                            <option value={{ $nome }}
+                                {{ $nome == app('request')->input('genero') ? 'selected' : '' }}>
+                                {{ $nome }}</option>
                         @endforeach
                     </select>
                     <div class="input-group-append">
@@ -32,7 +33,6 @@
             <tr>
                 <th>Título</th>
                 <th>Género</th>
-                <th>Cartaz</th>
                 <th>Sumário</th>
                 <th>Trailer</th>
                 <th></th>
@@ -43,24 +43,23 @@
             @foreach ($filmes as $filme)
                 <tr>
                     <td>{{ $filme->titulo }}</td>
-                    <td>{{ $filme->genero }}</td>
-                    <td>{{ $filme->cartaz }}</td>
+                    <td>{{ $filme->genero_code }}</td>
                     <td>{{ $filme->sumario }}</td>
-                    <td>{{ $filme->trailer_url }}</td>
+                    <td> <a href="{{ $filme->trailer_url }}" target="_blank">[Trailer]</a> </td>
                     <td nowrap>
 
                         @can('view', $filme)
                             <a href="{{ route('admin.filmes.edit', ['filme' => $filme]) }}" class="btn btn-primary btn-sm"
                                 role="button" aria-pressed="true">
                                 <i class="fas @cannot('update', $filme) fa-eye
-                        @else
-                        fa-pen @endcan"></i>
+@else
+fa-pen @endcan"></i>
                             </a>
                         @else
                             <span class="btn btn-secondary btn-sm disabled"><i
                                     class="fa @cannot('update', $filme) fa-eye
-                        @else
-                        fa-pen @endcan"></i></span>
+@else
+fa-pen @endcan"></i></span>
                         @endcan
                         @can('delete', $filme)
                             <form action="{{ route('admin.filmes.destroy', ['filme' => $filme]) }}" method="POST"

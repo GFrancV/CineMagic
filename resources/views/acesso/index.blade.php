@@ -68,7 +68,6 @@
             <input type="hidden" name="serch" value="true">
             <div class="form-group text-right">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
-                <a href="{{ route('admin') }}" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
     @endif

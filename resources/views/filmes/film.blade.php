@@ -47,10 +47,19 @@
                                     {{ $session->horario_inicio }}
                                 </td>
                                 <td>
-                                    <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}"
-                                        class="btn btn-primary btn-sm" role="button" aria-pressed="true">
-                                        <i class="fas fa-money-bill"></i>
-                                    </a>
+                                    @if (!is_null(Auth::user()))
+                                        @if (Auth::user()->tipo == 'C')
+                                            <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}"
+                                                class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                                <i class="fas fa-money-bill"></i>
+                                            </a>
+                                        @endif
+                                    @else
+                                        <a href="{{ '/purchase/' . $filme->id . '/' . $session->id }}"
+                                            class="btn btn-primary btn-sm" role="button" aria-pressed="true">
+                                            <i class="fas fa-money-bill"></i>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
