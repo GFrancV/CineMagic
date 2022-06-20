@@ -35,13 +35,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item {{ Route::currentRouteName() == 'filmes' ? 'active' : '' }}">
-                        <a class="nav-link" aria-current="page" href="/filmes">Filmes</a>
+                        <a class="nav-link" aria-current="page" href="/filmes">Em cartaz</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Serviços</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Loremp Impsum</a>
+                    <li class="nav-item {{ Route::currentRouteName() == 'filmes.all' ? 'active' : '' }}">
+                        <a class="nav-link" aria-current="page" href="/filmes/all">Todos os filmes</a>
                     </li>
                     @isset(Auth::user()->id)
                         @if (Auth::user()->tipo == 'C')

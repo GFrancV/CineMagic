@@ -12,23 +12,22 @@ use Illuminate\Support\Facades\Storage;
 class FilmeController extends Controller
 {
     public function index(){
-        //In the final version use this code!!
-        //$sessions = Sessoe::where('data', 'data', date('Y-m-d'));
-
-        //Only for test
-        $sessions = Sessoe::where('data', '2020-01-02');
+        $sessions = Sessoe::where('data', '>=',date('Y-m-d'))->get();
 
         $filmes = Filme::whereIn('id', $sessions->pluck('filme_id'))->get();
-        return view('filmes.index', ['filmes' => $filmes]);
+        return view('filmes.index', ['filmes' => $filmes, 'titulo' => 'Filmes em cartaz']);
+    }
+
+    public function all_filmes(){
+        $qry = Filme::query();
+        $filmes = $qry->paginate(8);
+
+        return view('filmes.index', ['filmes' => $filmes, 'titulo' => 'Todos os filmes']);
     }
 
     public function show_info($filmeId){
         $filme = Filme::find($filmeId);
-        //In the final version use this code!!
-        //$sessoesFilme = Sessoe::where('filme_id', $filmeId)->where('data', date('Y-m-d'))->paginate(10);
-
-        //Only for test
-        $sessoesFilme = Sessoe::where('filme_id', $filmeId)->where('data', '2020-01-02')->paginate(10);
+        $sessoesFilme = Sessoe::where('filme_id', $filmeId)->where('data', '>=',date('Y-m-d'))->paginate(10);
 
         return view('filmes.film', ['filme' => $filme, 'sessions' => $sessoesFilme]);
     }

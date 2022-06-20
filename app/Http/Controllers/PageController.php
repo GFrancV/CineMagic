@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function index(){
-        $sessions = Sessoe::where('data', '2020-01-02');
+        $sessions = Sessoe::where('data', '>=',date('Y-m-d'));
 
         $filmes = Filme::whereIn('id', $sessions->pluck('filme_id'))->get();
 

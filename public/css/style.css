@@ -89,6 +89,15 @@ input[type="radio"] + label > img {
     text-align: center;
 }
 
+.banner {
+    background-color: #aeaeae;
+    margin: 1rem;
+    padding: 5rem;
+    border: 2px solid #ccc;
+    /* IMPORTANTE */
+    text-align: center;
+}
+
 .disponivel {
     background-color: #113f67;
     width: 30px;

@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('content')
-    <br>
+    <div class="banner">
+        <img src="{{ asset('images/Cinemagic.png') }}" alt="cinemagic">
+    </div>
     <div class="container">
         <h1>Filmes em Cartaz</h1>
         <br>

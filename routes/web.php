@@ -24,6 +24,7 @@ use App\Http\Controllers\HistoricoController;
 //Films
 Route::get('/', [PageController::class, 'index']);
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes');
+Route::get('/filmes/all', [FilmeController::class, 'all_filmes'])->name('filmes.all');
 Route::get('/filmes/{filmeId}', [FilmeController::class, 'show_info']);
 
 //User
