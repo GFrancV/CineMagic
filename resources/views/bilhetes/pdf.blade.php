@@ -27,5 +27,11 @@
             </p>
         </div>
         <img src="{{ public_path('\qrCode\qr' . $bilhete->id . '.svg') }}" alt="">
+        <br><br>
+        <h3>User Photo</h3>
+        NAME: {{ $userPhoto->name }}
+        <br>
+        <img src="  {{ $userPhoto->foto_url ? asset('storage/fotos/' . $userPhoto->foto_url) : asset('images/default_img.png') }}"
+            alt="userPhoto" height="100">
     </div>
 </div>

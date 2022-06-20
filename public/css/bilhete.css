@@ -182,3 +182,9 @@ html {
 .right .ticket-number {
     color: gray;
 }
+
+.user-info {
+    margin-top: 200px;
+    color: white;
+    text-align: center;
+}

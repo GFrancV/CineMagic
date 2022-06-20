@@ -57,6 +57,7 @@
                                 'bilhete' => $infoBilhete,
                                 'session' => $session,
                                 'filme' => $filme,
+                                'userPhoto' => $user,
                             ])
                             <br>
                             <form action="{{ route('admin.acesso.acept', ['bilhete' => $infoBilhete]) }}" method="POST">

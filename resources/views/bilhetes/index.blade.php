@@ -14,6 +14,14 @@
     <!-- partial:index.partial.html -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+    <div class="user-info">
+        <h3>User Photo</h3>
+        NAME: {{ $userPhoto->name }}
+        <br>
+        <img src="  {{ $userPhoto->foto_url ? asset('storage/fotos/' . $userPhoto->foto_url) : asset('images/default_img.png') }}"
+            alt="userPhoto" height="100">
+    </div>
+
     <div class="ticket">
         <div class="left">
             <div class="image"

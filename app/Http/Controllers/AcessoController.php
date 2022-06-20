@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sala;
+use App\Models\User;
 use App\Models\Filme;
 use App\Models\Sessoe;
 use App\Models\Bilhete;
@@ -50,6 +51,7 @@ class AcessoController extends Controller
         $filme = Filme::find($session->filme_id);
 
         if ($bilhete) {
+
             if ($type == 'qr') {
                 $idBilhete = substr($bilhete, 30);
             }
@@ -59,8 +61,11 @@ class AcessoController extends Controller
 
             try {
                 $infoBilhete = Bilhete::find($idBilhete);
+                $user = User::find($infoBilhete->cliente_id);
                 if ($infoBilhete->sessao_id == $sessionId) {
-                    return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,'filme' => $filme, 'status' => 'show', 'sessionId' => $sessionId]);
+                    return view('acesso.control', ['session' => $session, 'infoBilhete' => $infoBilhete ,
+                    'filme' => $filme, 'status' => 'show', 'sessionId' => $sessionId,
+                    'user' => $user]);
                 }
                 else {
                     return view('acesso.control', ['session' => $session, 'filme' => $filme, 'status' => 'error', 'sessionId' => $sessionId]);

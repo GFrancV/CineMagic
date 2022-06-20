@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Filme;
 use App\Models\Sessoe;
 use App\Models\Bilhete;
@@ -15,8 +16,9 @@ class BilheteController extends Controller
         $bilhete = Bilhete::find($idBilhete);
         $session = Sessoe::find($bilhete->sessao_id);
         $filme = Filme::find($session->filme_id);
+        $userPhoto = User::find($bilhete->cliente_id);
 
-        return view('bilhetes.index', ['bilhete' => $bilhete, 'session' => $session, 'filme' => $filme, 'url' => $request->root()]);
+        return view('bilhetes.index', ['bilhete' => $bilhete, 'session' => $session, 'filme' => $filme, 'url' => $request->root(), 'userPhoto' => $userPhoto]);
     }
 
     public function pdf(Request $request, $idBilhete){
@@ -24,9 +26,12 @@ class BilheteController extends Controller
         $session = Sessoe::find($bilhete->sessao_id);
         $filme = Filme::find($session->filme_id);
 
+        //User photo
+        $userPhoto = User::find($bilhete->cliente_id);
+
         $qr = QrCode::generate($request->root() . '/bilhete/' . $bilhete->id, '../public/qrCode/qr' . $idBilhete . '.svg');
 
-        $pdf = PDF::loadView('bilhetes.pdf', ['bilhete' => $bilhete, 'session' => $session, 'filme' => $filme]);
+        $pdf = PDF::loadView('bilhetes.pdf', ['bilhete' => $bilhete, 'session' => $session, 'filme' => $filme, 'userPhoto' => $userPhoto]);
 
         return $pdf->stream();
 
