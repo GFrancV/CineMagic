@@ -2,14 +2,14 @@
 @section('title', 'Alterar Filme')
 @section('content')
 
-    <form method="POST" action="{{ route('admin.filmes.update', ['filme' => $filme]) }}" class="form-group">
+    <form method="POST" action="{{ route('admin.filmes.update', ['filme' => $filme]) }}" class="form-group"
+        enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @include('filmes.partials.create-edit')
         @isset($filme->cartaz_url)
             <div class="poster">
-                <img src="{{ $filme->cartaz_url ? asset('storage/cartazes/' . $filme->cartaz_url) : '' }}" alt="Cartaz Filme"
-                    class="img-profile" style="max-width:100%">
+                <img src="{{ $filme->cartaz_url ? asset('storage/cartazes/' . $filme->cartaz_url) : '' }}" alt="Cartaz Filme">
             </div>
         @endisset
         <div class="form-group text-right">

@@ -49,9 +49,9 @@
 @enderror
 
 <div class="form-group">
-    <label for="inputFoto">Upload a cartaz</label>
-    <input type="file" class="form-control-file" name="cartaz" id="inputFoto">
-    @error('foto')
+    <label for="cartaz_url">Upload a cartaz</label>
+    <input type="file" class="form-control-file" name="cartaz_url" id="cartaz_url">
+    @error('cartaz_url')
         <div class="small text-danger">{{ $message }}</div>
     @enderror
 </div>

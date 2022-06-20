@@ -85,6 +85,13 @@ class FilmeController extends Controller
         $filme->genero_code = $validated_data['genero_code'];
         $filme->ano = $validated_data['ano'];
         $filme->sumario = $validated_data['sumario'];
+
+        if ($request->hasFile('cartaz_url')) {
+            Storage::delete('public/cartazes/' . $filme->cartaz_url);
+            $path = $request->cartaz_url->store('public/cartazes/');
+            $filme->cartaz_url = basename($path);
+        }
+
         $filme->save();
 
         return redirect()->route('admin.filmes')
